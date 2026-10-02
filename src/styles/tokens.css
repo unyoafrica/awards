@@ -1,17 +1,17 @@
 :root {
-  /* Palette: heritage green, marigold gold, raw cotton, soil, ink. */
-  --forest-950: #0a1f16;
-  --forest-900: #0f2a1e;
-  --forest-800: #163a2a;
-  --forest-700: #1f4d37;
+  /* Palette: sampled from the únyọ brand kit (wordmark green, headwrap marigold, ivory ground, skin brown). */
+  --forest-950: #0d2219;
+  --forest-900: #16352a;
+  --forest-800: #1d4334;
+  --forest-700: #003d1c;
   --green-500: #2f7a52;
-  --gold-400: #f0bb45;
-  --gold-500: #e2a32a;
-  --gold-600: #b97f12;
-  --cotton-50: #f6f1e6;
-  --cotton-100: #efe6d4;
+  --gold-400: #f2b22e;
+  --gold-500: #e89c0c;
+  --gold-600: #b5780a;
+  --cotton-50: #faf3ea;
+  --cotton-100: #f2e7d6;
   --cotton-200: #e3d6bd;
-  --earth-600: #6e4a2c;
+  --earth-600: #7a4310;
   --earth-800: #3a2716;
   --ink-900: #15140f;
   --ink-700: #3b382e;

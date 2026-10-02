@@ -1,20 +1,16 @@
+/* The bar is always ivory: the approved wordmark is dark green and is never recoloured. */
 .nav {
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  color: var(--cotton-50);
-  transition:
-    background-color var(--dur) ease,
-    color var(--dur) ease,
-    box-shadow var(--dur) ease;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--cotton-50);
+  color: var(--ink-900);
+  transition: box-shadow var(--dur) ease;
 }
 
-.nav.is-solid:not(.is-open) {
-  background: color-mix(in oklab, var(--cotton-50) 92%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  color: var(--ink-900);
-  box-shadow: 0 1px 0 var(--color-border);
+.nav.is-solid {
+  box-shadow: 0 1px 0 var(--color-border), 0 10px 30px -18px rgb(22 53 42 / 0.35);
 }
 
 .nav__bar {
@@ -27,25 +23,16 @@
 .nav__brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
   margin-right: auto;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-  text-decoration: none;
+  /* Clear space around the artwork, per the brand kit. */
+  padding-block: 0.35rem;
 }
 
-.nav__brand-mark {
-  display: grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
-  background: var(--gold-500);
-  color: var(--ink-900);
-  font-size: 1.05rem;
-  line-height: 1;
+.nav__brand img {
+  display: block;
+  width: auto;
+  height: 3.4rem;
+  margin-left: -0.5rem;
 }
 
 .nav__links ul {
@@ -159,10 +146,7 @@
   color: var(--gold-400);
 }
 
-.is-open {
-  background: var(--forest-900);
-  color: var(--cotton-50);
-}
+
 
 @keyframes sheet-in {
   from {

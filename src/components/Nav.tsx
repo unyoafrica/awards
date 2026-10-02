@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { award, nav } from '../content'
+import wordmark from '../assets/brand/unyo-wordmark.png'
 import './Nav.css'
 
 export function Nav() {
@@ -33,11 +34,8 @@ export function Nav() {
   return (
     <header className={`nav ${solid ? 'is-solid' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav__bar wrap">
-        <a className="nav__brand" href="#top" aria-label={`${award.organiser}, back to top`}>
-          <span className="nav__brand-mark" aria-hidden="true">
-            U
-          </span>
-          <span className="nav__brand-name">{award.organiser}</span>
+        <a className="nav__brand" href="#top">
+          <img src={wordmark} alt={`${award.organiser}, back to top`} width="640" height="240" />
         </a>
 
         <nav className="nav__links" aria-label="Sections">

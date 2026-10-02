@@ -1,8 +1,12 @@
 .footer {
+  overflow: clip;
+}
+
+/* Grain stays on the dark band only, so it never sits over the logo artwork. */
+.footer__main {
   background: var(--forest-950);
   color: var(--cotton-50);
   padding-top: clamp(4rem, 8vw, 7rem);
-  overflow: clip;
 }
 
 .footer__top {
@@ -45,25 +49,41 @@
   color: var(--gold-400);
 }
 
-/* Wordmark set to the full measure, cropped by the page edge. */
-.footer__mark {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 17.4vw, 19rem);
-  font-weight: 800;
-  font-stretch: 78%;
-  line-height: 0.78;
-  letter-spacing: -0.05em;
-  white-space: nowrap;
-  color: var(--gold-500);
-  margin-top: 1rem;
-  margin-left: -0.03em;
+/* Brand band: the approved stacked logo on its own ivory ground, never retyped or recoloured. */
+.footer__brand {
+  background: var(--cotton-50);
+  color: var(--forest-900);
+}
+
+.footer__brand-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 2rem;
+  padding-block: clamp(2.5rem, 5vw, 4rem) 2rem;
+}
+
+.footer__logo {
+  width: clamp(9rem, 20vw, 15rem);
+  height: auto;
 }
 
 .footer__base {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 2rem;
-  padding-block: 1.75rem 2rem;
-  color: var(--color-on-primary-muted);
+  display: grid;
+  justify-items: end;
+  gap: 0.5rem;
+  text-align: right;
+  color: var(--ink-700);
+}
+
+@media (max-width: 599px) {
+  .footer__brand-inner {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .footer__base {
+    justify-items: start;
+    text-align: left;
+  }
 }

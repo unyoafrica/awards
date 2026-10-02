@@ -9,7 +9,7 @@
  */
 
 export const award = {
-  name: 'Unyo Africa Cultural Tourism Impact Award',
+  name: 'Únyọ Africa Cultural Tourism Impact Award',
   shortName: 'Cultural Tourism Impact Award',
   year: '2026',
   edition: 'Inaugural edition',
@@ -18,7 +18,7 @@ export const award = {
   date: '29 October 2026',
   city: 'Ibadan, Nigeria',
   forum: '14th Youth Tourism & Hospitality Leaders Forum',
-  organiser: 'Unyo Africa',
+  organiser: 'Únyọ Africa',
   foundation: 'Comemakewego Tourism Africa Foundation',
 }
 
@@ -38,7 +38,7 @@ export const manifesto = {
   // VERIFY: body copy.
   body: [
     'Across Nigeria, young people are guiding heritage walks, staging festivals, cooking the food of their grandparents and teaching crafts to visitors. That work protects culture and brings tourism home to communities.',
-    'The Unyo Africa Cultural Tourism Impact Award exists to recognise it.',
+    'The Únyọ Africa Cultural Tourism Impact Award exists to recognise it.',
   ],
 }
 

@@ -42,5 +42,5 @@ no decorative "tribal" graphics.
 ## Before launch
 
 - Check every `VERIFY` string in `src/content.ts` against the source site, including the FAQ wording.
-- Replace the "U" monogram in the navigation and the favicon with the real Unyo Africa emblem.
+- Brand artwork comes from the únyọ Digital Brand Asset Kit (`src/assets/brand`, `public/brand`). Never retype or recolour the logo, and keep ú and ọ in visible brand text.
 - Confirm how the Comemakewego Tourism Africa Foundation should be credited in the footer.

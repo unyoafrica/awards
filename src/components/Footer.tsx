@@ -1,10 +1,12 @@
 import { award, nav } from '../content'
 import { Arrow } from './Arrow'
+import masterLogo from '../assets/brand/unyo-master-stacked.png'
 import './Footer.css'
 
 export function Footer() {
   return (
-    <footer className="footer grain">
+    <footer className="footer">
+      <div className="footer__main grain">
       <div className="wrap">
         <div className="footer__top">
           <p className="footer__line">
@@ -28,16 +30,26 @@ export function Footer() {
             </li>
           </ul>
         </nav>
+      </div>
+      </div>
 
-        <p className="footer__mark" aria-label={award.organiser}>
-          <span aria-hidden="true">{award.organiser}</span>
-        </p>
-
-        <div className="footer__base">
-          <p className="meta">{award.foundation}</p>
-          <p className="meta">
-            © {award.year} {award.organiser}
-          </p>
+      <div className="footer__brand">
+        <div className="wrap footer__brand-inner">
+          <img
+            className="footer__logo"
+            src={masterLogo}
+            alt={award.organiser}
+            width="800"
+            height="800"
+            loading="lazy"
+          />
+          <div className="footer__base">
+            <p className="meta">{award.foundation}</p>
+            <p className="meta">unyo.africa</p>
+            <p className="meta">
+              © {award.year} {award.organiser}
+            </p>
+          </div>
         </div>
       </div>
     </footer>
