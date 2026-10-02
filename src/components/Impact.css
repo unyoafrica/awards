@@ -1,0 +1,70 @@
+.impact {
+  padding-block: clamp(6rem, 4rem + 10vw, 13rem);
+  background: var(--ink-900);
+  color: var(--cotton-50);
+  overflow: clip;
+}
+
+.impact__compare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  font-size: clamp(4rem, 1rem + 15vw, 18rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+}
+
+.impact__a {
+  font-stretch: 100%;
+  color: var(--gold-400);
+}
+
+.impact__sign {
+  display: block;
+  width: 0.62em;
+  margin: 0.06em 0 0.06em 0.06em;
+  color: var(--cotton-50);
+}
+
+.impact__sign svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Popularity: set lighter, condensed and quieter. It is still present, just outweighed. */
+.impact__b {
+  justify-self: end;
+  font-weight: 300;
+  font-stretch: 75%;
+  font-size: 0.62em;
+  letter-spacing: -0.03em;
+  color: var(--cotton-50);
+  opacity: 0.5;
+}
+
+.impact__detail {
+  max-width: 24ch;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: var(--step-2);
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+@media (max-width: 599px) {
+  .impact__compare {
+    font-size: clamp(3.3rem, 21vw, 6rem);
+  }
+
+  .impact__b {
+    font-size: 0.7em;
+  }
+
+  .impact__detail {
+    margin-left: 0;
+  }
+}

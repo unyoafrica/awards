@@ -1,0 +1,188 @@
+.award {
+  padding-top: var(--section);
+  background: var(--cotton-100);
+}
+
+.award__head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1.25rem;
+  align-items: end;
+}
+
+.award__title {
+  grid-column: 1 / 8;
+  font-size: var(--step-3);
+  font-stretch: 90%;
+}
+
+.award__intro {
+  grid-column: 9 / 13;
+  max-width: 34ch;
+  color: var(--ink-700);
+}
+
+/* The grant as an engraved fact: set full measure, tabular, quietly heavy. */
+.award__grant {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+  border-top: 2px solid var(--ink-900);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.award__amount {
+  font-family: var(--font-display);
+  font-size: clamp(4.4rem, 22vw, 23.5rem);
+  font-weight: 800;
+  font-stretch: 100%;
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  color: var(--forest-900);
+  padding-block: 0.08em 0.04em;
+  margin-left: -0.04em;
+  white-space: nowrap;
+}
+
+.award__grant-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  color: var(--ink-700);
+}
+
+.award__kit {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  margin-block: clamp(3rem, 7vw, 6rem) var(--section);
+}
+
+.award__plaque {
+  grid-column: 1 / 6;
+  aspect-ratio: 4 / 5;
+}
+
+.award__items {
+  grid-column: 7 / 13;
+  align-self: end;
+}
+
+.award__items li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: 1.6rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.award__items li:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.award__items h3 {
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.award__items p {
+  color: var(--ink-700);
+  max-width: 30ch;
+}
+
+.award__stage {
+  background: var(--forest-900);
+  color: var(--cotton-50);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.award__stage-inner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1rem;
+  align-items: end;
+}
+
+.award__stage-label {
+  grid-column: 1 / -1;
+  color: var(--gold-400);
+}
+
+.award__stage-forum {
+  grid-column: 1 / 9;
+  font-family: var(--font-body);
+  font-size: var(--step-3);
+  font-style: italic;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.award__stage-facts {
+  grid-column: 9 / 13;
+  justify-self: end;
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.award__stage-facts div + div dd {
+  color: var(--gold-400);
+}
+
+@media (max-width: 1023px) {
+  .award__title,
+  .award__intro {
+    grid-column: 1 / -1;
+  }
+
+  .award__plaque {
+    grid-column: 1 / 6;
+  }
+
+  .award__items {
+    grid-column: 6 / 13;
+    padding-left: 1rem;
+  }
+
+  .award__items li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .award__stage-forum,
+  .award__stage-facts {
+    grid-column: 1 / -1;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .award__stage-facts {
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .award__grant-caption {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .award__plaque {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 2rem;
+  }
+
+  .award__items {
+    grid-column: 1 / -1;
+    padding-left: 0;
+  }
+}

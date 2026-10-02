@@ -1,0 +1,56 @@
+:root {
+  /* Palette: heritage green, marigold gold, raw cotton, soil, ink. */
+  --forest-950: #0a1f16;
+  --forest-900: #0f2a1e;
+  --forest-800: #163a2a;
+  --forest-700: #1f4d37;
+  --green-500: #2f7a52;
+  --gold-400: #f0bb45;
+  --gold-500: #e2a32a;
+  --gold-600: #b97f12;
+  --cotton-50: #f6f1e6;
+  --cotton-100: #efe6d4;
+  --cotton-200: #e3d6bd;
+  --earth-600: #6e4a2c;
+  --earth-800: #3a2716;
+  --ink-900: #15140f;
+  --ink-700: #3b382e;
+  --ink-500: #5f594a;
+
+  /* Roles */
+  --color-bg: var(--cotton-50);
+  --color-surface: var(--cotton-100);
+  --color-foreground: var(--ink-900);
+  --color-muted: var(--ink-500);
+  --color-primary: var(--forest-900);
+  --color-accent: var(--gold-500);
+  --color-border: color-mix(in oklab, var(--ink-900) 16%, transparent);
+  --color-on-primary: var(--cotton-50);
+  --color-on-primary-muted: #b8c7b9;
+  --color-focus: var(--gold-500);
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
+  --font-body: 'Source Serif 4 Variable', Georgia, serif;
+  --font-mono: var(--font-display); /* utility labels use the condensed display cut */
+
+  --step--1: clamp(0.84rem, 0.8rem + 0.15vw, 0.92rem);
+  --step-0: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);
+  --step-1: clamp(1.3rem, 1.15rem + 0.6vw, 1.65rem);
+  --step-2: clamp(1.7rem, 1.4rem + 1.3vw, 2.6rem);
+  --step-3: clamp(2.3rem, 1.6rem + 3vw, 4.4rem);
+  --step-4: clamp(3rem, 1.6rem + 6vw, 7.5rem);
+  --step-5: clamp(3.4rem, 1rem + 10.5vw, 12.5rem);
+
+  /* Space and layout */
+  --gutter: clamp(1rem, 0.5rem + 2.4vw, 3rem);
+  --section: clamp(5rem, 3rem + 9vw, 11rem);
+  --max: 1680px;
+  --radius: 2px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+}

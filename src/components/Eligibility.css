@@ -1,0 +1,141 @@
+.qualify {
+  padding-block: var(--section);
+  background: var(--cotton-50);
+}
+
+.qualify__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.qualify__aside {
+  grid-column: 1 / 5;
+}
+
+.qualify__sticky {
+  position: sticky;
+  top: 7rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.qualify__title {
+  font-size: var(--step-4);
+  font-stretch: 82%;
+  line-height: 0.88;
+}
+
+.qualify__intro {
+  color: var(--ink-700);
+  max-width: 26ch;
+}
+
+.qualify__list {
+  grid-column: 6 / 13;
+  display: grid;
+  gap: clamp(4rem, 9vw, 8rem);
+}
+
+.qualify__item {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: end;
+}
+
+.qualify__text {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.qualify__n {
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, 3rem + 9vw, 13rem);
+  font-weight: 800;
+  font-stretch: 78%;
+  font-variant-numeric: lining-nums;
+  line-height: 0.75;
+  letter-spacing: -0.06em;
+  color: var(--forest-900);
+}
+
+.qualify__item-title {
+  font-size: var(--step-2);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  max-width: 12ch;
+}
+
+.qualify__detail {
+  max-width: 30ch;
+  color: var(--ink-700);
+}
+
+.qualify__photo {
+  grid-column: 4 / 8;
+  grid-row: 1;
+  aspect-ratio: 4 / 5;
+}
+
+/* Alternate the composition so the column reads as a sequence, not a stack. */
+.qualify__item--2 .qualify__text {
+  grid-column: 5 / 8;
+}
+
+.qualify__item--2 .qualify__photo {
+  grid-column: 1 / 5;
+}
+
+.qualify__item--2 .qualify__n {
+  color: var(--gold-600);
+}
+
+.qualify__item--3 .qualify__n {
+  color: var(--forest-700);
+}
+
+@media (max-width: 1023px) {
+  .qualify__aside,
+  .qualify__list {
+    grid-column: 1 / -1;
+  }
+
+  .qualify__sticky {
+    position: static;
+    margin-bottom: 3.5rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .qualify__item,
+  .qualify__item--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .qualify__item .qualify__text,
+  .qualify__item--2 .qualify__text {
+    grid-column: 1;
+    grid-row: 2;
+    padding-top: 1.25rem;
+    padding-bottom: 0;
+  }
+
+  .qualify__item .qualify__photo,
+  .qualify__item--2 .qualify__photo {
+    grid-column: 1;
+    grid-row: 1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .qualify__n {
+    margin-top: -0.55em;
+    position: relative;
+  }
+}

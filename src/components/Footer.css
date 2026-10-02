@@ -1,0 +1,69 @@
+.footer {
+  background: var(--forest-950);
+  color: var(--cotton-50);
+  padding-top: clamp(4rem, 8vw, 7rem);
+  overflow: clip;
+}
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--cotton-50) 18%, transparent);
+}
+
+.footer__line {
+  max-width: 22ch;
+  font-family: var(--font-body);
+  font-size: var(--step-2);
+  font-style: italic;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding-block: 1.75rem;
+}
+
+.footer__nav a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-on-primary-muted);
+  transition: color var(--dur-fast) ease;
+}
+
+.footer__nav a:hover {
+  color: var(--gold-400);
+}
+
+/* Wordmark set to the full measure, cropped by the page edge. */
+.footer__mark {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 17.4vw, 19rem);
+  font-weight: 800;
+  font-stretch: 78%;
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: var(--gold-500);
+  margin-top: 1rem;
+  margin-left: -0.03em;
+}
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1.75rem 2rem;
+  color: var(--color-on-primary-muted);
+}

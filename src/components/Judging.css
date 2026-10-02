@@ -1,0 +1,161 @@
+.judging {
+  padding-block: var(--section);
+  background: var(--cotton-100);
+}
+
+.judging__head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.judging__title {
+  grid-column: 1 / 8;
+  font-size: var(--step-4);
+  font-stretch: 82%;
+  line-height: 0.88;
+}
+
+.judging__intro {
+  grid-column: 9 / 13;
+  max-width: 32ch;
+  color: var(--ink-700);
+}
+
+.judging__whole {
+  display: flex;
+  gap: 3px;
+  height: 0.85rem;
+}
+
+.judging__seg {
+  flex-basis: 0;
+  background: var(--forest-900);
+}
+
+.judging__seg--2 {
+  background: var(--forest-700);
+}
+
+.judging__seg--3 {
+  background: var(--green-500);
+}
+
+.judging__seg--4 {
+  background: var(--gold-600);
+}
+
+.judging__seg--5 {
+  background: var(--gold-500);
+}
+
+.judging__seg--6 {
+  background: var(--gold-400);
+}
+
+.judging__whole-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  color: var(--ink-500);
+}
+
+.judging__list {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Numeral size follows the weight, so the hierarchy of criteria is visible at a glance. */
+.judging__row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  column-gap: var(--gutter);
+  align-items: end;
+  padding-block: clamp(1rem, 2vw, 1.6rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.judging__row:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.judging__weight {
+  grid-row: 1 / 3;
+  font-family: var(--font-display);
+  font-size: calc(var(--w) * clamp(0.13rem, 0.06rem + 0.38vw, 0.42rem));
+  font-weight: 800;
+  font-stretch: 80%;
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--forest-900);
+}
+
+.judging__pct {
+  font-size: 0.45em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-left: 0.04em;
+  vertical-align: 0.95em;
+}
+
+.judging__name {
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+  margin-bottom: 0.9rem;
+}
+
+.judging__track {
+  height: 6px;
+  background: color-mix(in oklab, var(--ink-900) 8%, transparent);
+}
+
+.judging__bar {
+  display: block;
+  height: 100%;
+  width: calc(var(--w) * 1%);
+  background: var(--forest-900);
+}
+
+.judging__row--3 .judging__bar,
+.judging__row--4 .judging__bar {
+  background: var(--forest-700);
+}
+
+.judging__row--5 .judging__bar,
+.judging__row--6 .judging__bar {
+  background: var(--gold-600);
+}
+
+.judging__row--5 .judging__weight,
+.judging__row--6 .judging__weight {
+  color: var(--gold-600);
+}
+
+@media (max-width: 1023px) {
+  .judging__title,
+  .judging__intro {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 599px) {
+  .judging__row {
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .judging__weight {
+    grid-row: auto;
+    font-size: calc(var(--w) * 0.16rem + 1.2rem);
+  }
+
+  .judging__name {
+    margin-bottom: 0.25rem;
+  }
+}

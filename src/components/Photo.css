@@ -1,0 +1,96 @@
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--photo-bg);
+  color: var(--photo-fg);
+}
+
+.photo--forest {
+  --photo-bg: var(--forest-800);
+  --photo-fg: var(--cotton-100);
+  --photo-line: color-mix(in oklab, var(--cotton-50) 22%, transparent);
+}
+
+.photo--gold {
+  --photo-bg: var(--gold-600);
+  --photo-fg: var(--ink-900);
+  --photo-line: color-mix(in oklab, var(--ink-900) 25%, transparent);
+}
+
+.photo--earth {
+  --photo-bg: var(--earth-600);
+  --photo-fg: var(--cotton-50);
+  --photo-line: color-mix(in oklab, var(--cotton-50) 24%, transparent);
+}
+
+.photo--ink {
+  --photo-bg: #22211a;
+  --photo-fg: var(--cotton-100);
+  --photo-line: color-mix(in oklab, var(--cotton-50) 18%, transparent);
+}
+
+.photo img,
+.photo__plate {
+  position: absolute;
+  inset: -6% 0;
+  width: 100%;
+  height: 112%;
+  object-fit: cover;
+}
+
+/* Placeholder plate: tonal ground, a contact-sheet frame and the shot brief. */
+.photo__plate {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: clamp(1rem, 3%, 1.75rem);
+  padding-bottom: calc(6% + clamp(1rem, 3%, 1.75rem));
+  background:
+    radial-gradient(120% 80% at 70% 20%, color-mix(in oklab, var(--photo-fg) 10%, transparent), transparent 60%),
+    var(--photo-bg);
+}
+
+.photo__plate::before {
+  content: '';
+  position: absolute;
+  inset: calc(6% + 0.75rem) 0.75rem;
+  border: 1px solid var(--photo-line);
+  pointer-events: none;
+}
+
+.photo__plate-label {
+  opacity: 0.75;
+}
+
+.photo__plate-brief {
+  max-width: 34ch;
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-style: italic;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.photo {
+  container-type: inline-size;
+}
+
+@container (max-width: 15rem) {
+  .photo__plate-brief {
+    display: none;
+  }
+
+  .photo__plate {
+    padding: 0.6rem;
+    padding-bottom: calc(6% + 0.6rem);
+  }
+
+  .photo__plate::before {
+    inset: calc(6% + 0.35rem) 0.35rem;
+  }
+
+  .photo__plate-label {
+    font-size: 0.7rem;
+  }
+}
