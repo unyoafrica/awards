@@ -46,6 +46,7 @@ export function Footer() {
           <div className="footer__base">
             <p className="meta">{award.foundation}</p>
             <p className="meta">unyo.africa</p>
+            <p className="meta">Photographs: Freepik</p>
             <p className="meta">
               © {award.year} {award.organiser}
             </p>

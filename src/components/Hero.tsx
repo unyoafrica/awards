@@ -22,7 +22,7 @@ export function Hero() {
 
         <div className="hero__media" data-hero-media>
           <Photo shot="hero-guide" priority parallax className="hero__photo" />
-          <Photo shot="hero-detail" priority decorative className="hero__detail" />
+          <Photo shot="hero-detail" priority decorative optional className="hero__detail" />
         </div>
 
         <div className="hero__intro">

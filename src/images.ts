@@ -7,6 +7,8 @@
  * update it to describe the real one when the file lands.
  *
  * Direction: documentary, natural light, real Nigerian people and places.
+ * Current photos are free-licence Freepik stock (see docs/photo-shortlist.md);
+ * replace with Únyọ's own photography as it becomes available.
  * No staged corporate stock, no safari, no decorative "tribal" graphics.
  */
 
@@ -35,73 +37,84 @@ export type Shot = {
 
 export const shots = {
   'hero-guide': {
-    alt: 'A young guide leads visitors through a heritage site in Ibadan',
+    alt: 'A dancer in a coral-bead headdress and checked wrapper performs with a fly-whisk beside a drummer',
     brief: 'Portrait crop. A young Nigerian guide mid-story, visitors blurred behind. Late-afternoon light.',
     tone: 'earth',
-    focus: '50% 30%',
+    focus: '58% 35%',
   },
   'hero-detail': {
-    alt: 'Close-up of hands dyeing adire cloth',
+    alt: 'Close-up of hands wringing cloth over a bowl of natural dye',
     brief: 'Tight detail. Hands at work on a craft: adire dyeing, beadwork or weaving.',
     tone: 'forest',
+    focus: '50% 40%',
   },
   'manifesto': {
-    alt: 'A festival procession moving through a Nigerian town',
+    alt: 'Dancers and drummers perform in front of a mud-walled compound',
     brief: 'Wide, cinematic. A festival or procession, people carrying tradition through the street.',
     tone: 'ink',
+    focus: '50% 40%',
   },
   'award-plaque': {
-    alt: 'The Unyo Africa Cultural Tourism Impact Award plaque',
+    alt: 'The Únyọ Africa Cultural Tourism Impact Award plaque',
     brief: 'The award plaque, photographed straight on, soft shadow.',
     tone: 'gold',
   },
   'eligibility-youth': {
-    alt: 'Young founders of a cultural tourism initiative',
+    alt: 'Young drummers and dancers in traditional red-and-white dress and coral beads',
     brief: 'The people behind an initiative: a small youth-led team, candid.',
     tone: 'forest',
+    focus: '55% 45%',
   },
   'eligibility-active': {
-    alt: 'A cultural tour in progress',
+    alt: 'A young man reads from his notes while people work together in a timber workshop',
     brief: 'Activity in motion: a tour, a workshop, a market visit.',
     tone: 'earth',
+    focus: '30% 45%',
   },
   'eligibility-impact': {
-    alt: 'Community members taking part in a cultural tourism activity',
+    alt: 'Traders laugh with customers at a market stall of oranges, bananas and yams',
     brief: 'Community benefit: local hosts, artisans or vendors with visitors.',
     tone: 'gold',
+    focus: '45% 50%',
   },
   'culture-heritage': {
-    alt: 'Visitors on a heritage tour',
+    alt: 'Musicians in traditional dress play drums in front of carved wooden shutters',
     brief: 'Heritage tour: a historic site, palace, shrine or old quarter with a guide.',
     tone: 'earth',
+    focus: '55% 50%',
   },
   'culture-festivals': {
-    alt: 'Dancers at a traditional festival',
+    alt: 'Festival dancers in checked wrappers, a drummer behind them',
     brief: 'Festival or traditional ceremony, colour and movement.',
     tone: 'gold',
+    focus: '50% 55%',
   },
   'culture-food': {
-    alt: 'A cook preparing a traditional Nigerian dish',
+    alt: 'Two women cook over a large pot outdoors',
     brief: 'Food: hands, fire, pots, a dish being shared.',
     tone: 'earth',
+    focus: '55% 50%',
   },
   'culture-crafts': {
-    alt: 'An artisan at work on a traditional craft',
+    alt: 'A woman weaves on a wooden hand loom',
     brief: 'Craft: weaving, carving, dyeing, beadwork, pottery.',
     tone: 'forest',
+    focus: '45% 50%',
   },
   'culture-storytelling': {
-    alt: 'A storyteller speaking to a gathered audience',
+    alt: 'Drummers in coral beads and red caps play hand drums',
     brief: 'Storytelling: a griot, elder or young creator telling a story to listeners.',
     tone: 'ink',
+    focus: '60% 50%',
   },
   'culture-community': {
-    alt: 'Hosts welcoming visitors in their community',
+    alt: 'Three people talk and laugh together in a green farm field',
     brief: 'Community tourism: a village or neighbourhood hosting visitors.',
     tone: 'forest',
+    focus: '50% 45%',
   },
   'nominate': {
-    alt: 'A young cultural entrepreneur looking toward the camera',
+    alt: 'A smiling young man in a traditional woven sash',
     brief: 'A confident portrait of a young cultural entrepreneur in their own setting.',
     tone: 'forest',
     focus: '50% 25%',

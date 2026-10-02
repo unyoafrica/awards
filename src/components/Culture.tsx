@@ -44,7 +44,7 @@ export function Culture() {
         <div className="culture__preview" id="culture-preview">
           {culture.areas.map((area, i) => (
             <div key={area.title} className="culture__frame" data-active={i === active} aria-hidden={i !== active}>
-              <Photo shot={area.image as ShotKey} />
+              <Photo shot={area.image as ShotKey} preload />
             </div>
           ))}
           <p className="culture__caption meta" aria-hidden="true">
