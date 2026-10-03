@@ -265,10 +265,37 @@ export const submissionKeys = ['submissionId', ...sections.flatMap((s) => s.fiel
  * the page then explains that submissions are not connected yet.
  */
 export const googleForm: { formId: string; entries: Partial<Record<string, string>> } = {
-  formId: '',
+  // "Únyọ Award 2026 nominations", owned by unyo.africa@gmail.com.
+  formId: '1FAIpQLSc2OU350Stgerp26eO6HkVSPSrssxrvTSEDtogmdNa0XdC6cQ',
   entries: {
-    // submissionId: 'entry.000000000',
-    // nominationType: 'entry.000000000',
-    // …one line per field name in `submissionKeys`
+    submissionId: 'entry.969664315',
+    nominationType: 'entry.1913703048',
+    nominatorName: 'entry.536015413',
+    nominatorEmail: 'entry.1091988940',
+    nominatorPhone: 'entry.609297318',
+    relationship: 'entry.1657265935',
+    organisation: 'entry.844925667',
+    leadName: 'entry.1444180846',
+    leadAge: 'entry.854716908',
+    email: 'entry.959759532',
+    phone: 'entry.1055242374',
+    location: 'entry.560173784',
+    organisationType: 'entry.2053703415',
+    startDate: 'entry.1494931099',
+    socialLink: 'entry.1653420638',
+    website: 'entry.916680224',
+    category: 'entry.1253231788',
+    nigerian: 'entry.721579680',
+    activities: 'entry.1557101123',
+    culturalImpact: 'entry.2058732681',
+    communityBenefit: 'entry.1422739241',
+    reach: 'entry.249719882',
+    innovation: 'entry.1853347304',
+    evidenceLinks: 'entry.691088829',
+    active: 'entry.437740038',
+    grantUse: 'entry.993748018',
+    futurePlans: 'entry.597635100',
+    accurate: 'entry.448265492',
+    consent: 'entry.1658103190',
   },
 }

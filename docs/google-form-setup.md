@@ -1,5 +1,9 @@
 # Connecting the nomination form to Google Forms
 
+**Status:** connected. The form "Únyọ Award 2026 nominations" (owned by unyo.africa@gmail.com) was
+created through the Google Forms API with the 29 questions below, and its id and entry codes are set
+in `src/nomination.ts`. The steps below are kept for recreating or replacing the form.
+
 The nomination page (`nominate.html`) collects and checks every answer itself, then sends it to a
 Google Form you own. Responses appear in that form, and in a Google Sheet if you link one.
 
