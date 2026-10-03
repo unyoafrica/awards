@@ -143,7 +143,7 @@ export function NominationForm() {
 
   function downloadReceipt() {
     if (status.kind !== 'done') return
-    const text = `${award.name.toUpperCase()} ${award.year}\nNomination confirmation\n\nReference: ${status.reference}\nInitiative: ${status.organisation}\nSubmitted: ${status.date}\nNominator email: ${status.email}\n\n${page.confirmation.body} ${page.confirmation.footnote}\n\n${award.organiser} is a Comemakewego.africa brand.\n`
+    const text = `${award.name.toUpperCase()} ${award.year}\nNomination confirmation\n\nReference: ${status.reference}\nInitiative: ${status.organisation}\nSubmitted: ${status.date}\nNominator email: ${status.email}\n\n${page.confirmation.body} ${page.confirmation.footnote}\n`
     const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }))
     const a = document.createElement('a')
     a.href = url
@@ -264,7 +264,6 @@ export function NominationForm() {
             <p className="nom__note">{page.readyNote}</p>
             <div className="nom__partner">
               <img src={partnerLogo} alt="ComeMakeWeGo Tourism Africa Foundation" width="788" height="180" />
-              <p className="nom__note">{award.organiser} is a Comemakewego.africa brand.</p>
             </div>
           </div>
         </aside>
