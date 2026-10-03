@@ -8,7 +8,7 @@ import './NominationForm.css'
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; message: string } | ({ kind: 'done' } & Confirmation)
 
-const liveFormUrl = 'https://unyoafrica.github.io/awards/nominate.html'
+const liveFormUrl = 'https://award.unyo.africa/nominate.html'
 
 /** Today's date in the visitor's time zone, as yyyy-mm-dd, the latest allowed start date. */
 const today = new Date().toLocaleDateString('en-CA')
