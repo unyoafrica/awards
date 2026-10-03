@@ -1,10 +1,14 @@
-import { useId, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { award } from '../content'
 import { googleForm, nominationPage as page, sections, submissionKeys, type Field } from '../nomination'
 import partnerLogo from '../assets/brand/comemakewego-logo.png'
+import { Photo } from './Photo'
 import './NominationForm.css'
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; message: string } | { kind: 'done'; reference: string; organisation: string; email: string; date: string }
+
+/** Today's date in the visitor's time zone, as yyyy-mm-dd, the latest allowed start date. */
+const today = new Date().toLocaleDateString('en-CA')
 
 function newReference() {
   return `UNYO-2026-${crypto.randomUUID().replaceAll('-', '').slice(0, 10).toUpperCase()}`
@@ -28,7 +32,8 @@ async function sendToGoogleForm(values: Record<string, string>) {
 export function NominationForm() {
   const formRef = useRef<HTMLFormElement>(null)
   const messageRef = useRef<HTMLParagraphElement>(null)
-  const confirmRef = useRef<HTMLElement>(null)
+  const confirmRef = useRef<HTMLHeadingElement>(null)
+  const [copied, setCopied] = useState(false)
   const [nominationType, setNominationType] = useState('My own initiative')
   const [counts, setCounts] = useState<Record<string, number>>({})
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
@@ -71,10 +76,6 @@ export function NominationForm() {
         email: values.nominatorEmail,
         date: new Date().toISOString(),
       })
-      requestAnimationFrame(() => {
-        confirmRef.current?.focus()
-        confirmRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      })
     } catch {
       showError('Unable to connect. Your answers are still here. Please check your connection and try again.')
     }
@@ -94,6 +95,84 @@ export function NominationForm() {
   }
 
   const done = status.kind === 'done'
+
+  // The success screen replaces the form: start it at the top of the page.
+  useEffect(() => {
+    if (!done) return
+    window.scrollTo({ top: 0 })
+    confirmRef.current?.focus()
+  }, [done])
+
+  async function copyReference() {
+    if (status.kind !== 'done') return
+    try {
+      await navigator.clipboard.writeText(status.reference)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      setCopied(false)
+    }
+  }
+
+  if (status.kind === 'done') {
+    const submitted = new Date(status.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+    return (
+      <main id="main" className="nom nom--done">
+        <section className="nom__success grain" aria-labelledby="confirm-title">
+          <div className="wrap nom__success-grid">
+            <div className="nom__success-text">
+              <span className="nom__success-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 25l8 8 16-18" />
+                </svg>
+              </span>
+              <p className="meta nom__eyebrow">{page.confirmation.eyebrow}</p>
+              <h1 id="confirm-title" ref={confirmRef} tabIndex={-1} className="nom__success-title">
+                {page.confirmation.heading}
+              </h1>
+              <p className="nom__success-body">{page.confirmation.body}</p>
+
+              <div className="nom__receipt">
+                <div className="nom__receipt-ref">
+                  <p className="meta">{page.confirmation.referenceLabel}</p>
+                  <p className="nom__ref">{status.reference}</p>
+                  <button type="button" className="nom__copy" onClick={copyReference}>
+                    {copied ? 'Copied' : 'Copy reference'}
+                  </button>
+                </div>
+                <dl className="nom__receipt-facts">
+                  <div>
+                    <dt className="meta">Initiative</dt>
+                    <dd>{status.organisation}</dd>
+                  </div>
+                  <div>
+                    <dt className="meta">Submitted</dt>
+                    <dd>{submitted}</dd>
+                  </div>
+                  <div>
+                    <dt className="meta">Confirmation for</dt>
+                    <dd>{status.email}</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <p className="nom__success-note">{page.confirmation.footnote}</p>
+
+              <div className="nom__success-actions">
+                <a className="btn btn--gold" href="index.html">
+                  {page.confirmation.back}
+                </a>
+                <button type="button" className="btn btn--ghost" onClick={downloadReceipt}>
+                  Download confirmation
+                </button>
+              </div>
+            </div>
+            <Photo shot="nominate" priority className="nom__success-photo" />
+          </div>
+        </section>
+      </main>
+    )
+  }
 
   return (
     <main id="main" className="nom">
@@ -131,14 +210,12 @@ export function NominationForm() {
         </aside>
 
         <div className="nom__main">
-          {!done && (
-            <div className="nom__heading">
-              <h2>{page.formHeading}</h2>
-              <p>{page.formIntro}</p>
-            </div>
-          )}
+          <div className="nom__heading">
+            <h2>{page.formHeading}</h2>
+            <p>{page.formIntro}</p>
+          </div>
 
-          <form ref={formRef} id="nomination-form" className="nom__form" onSubmit={onSubmit} hidden={done}>
+          <form ref={formRef} id="nomination-form" className="nom__form" onSubmit={onSubmit}>
             {sections.map((section) => (
               <fieldset key={section.id} id={section.id} className="nom__section">
                 <legend>
@@ -186,22 +263,6 @@ export function NominationForm() {
             ))}
           </form>
 
-          {done && (
-            <section ref={confirmRef} className="nom__confirm" tabIndex={-1} aria-labelledby="confirm-title">
-              <p className="meta nom__eyebrow">{page.confirmation.eyebrow}</p>
-              <h2 id="confirm-title">{page.confirmation.heading}</h2>
-              <p>{page.confirmation.body}</p>
-              <p className="meta nom__ref-label">{page.confirmation.referenceLabel}</p>
-              <p className="nom__ref">{status.reference}</p>
-              <button type="button" className="btn btn--ink" onClick={downloadReceipt}>
-                Download confirmation
-              </button>
-              <p className="nom__hint">{page.confirmation.footnote}</p>
-              <a className="nom__back" href="index.html">
-                {page.confirmation.back}
-              </a>
-            </section>
-          )}
         </div>
       </div>
     </main>
@@ -280,6 +341,8 @@ function FieldControl({
           id={id}
           name={id}
           type={field.kind}
+          max={field.kind === 'date' ? today : undefined}
+          onClick={field.kind === 'date' ? (e) => e.currentTarget.showPicker?.() : undefined}
           maxLength={field.maxLength}
           required={field.required}
           placeholder={field.placeholder}

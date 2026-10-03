@@ -50,7 +50,7 @@ export function Footer({ page = 'home' }: { page?: 'home' | 'nominate' }) {
             <p className="meta">{award.foundation}</p>
             <p className="meta">{award.organiser} is a Comemakewego.africa brand</p>
             <p className="meta">unyo.africa</p>
-            <p className="meta">Photographs: Freepik</p>
+            <p className="meta">Selected photographs: Freepik</p>
             <p className="meta">
               © {award.year} {award.organiser}
             </p>

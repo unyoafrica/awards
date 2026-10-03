@@ -55,9 +55,10 @@ export const shots = {
     focus: '50% 40%',
   },
   'award-plaque': {
-    alt: 'The Únyọ Africa Cultural Tourism Impact Award plaque',
+    alt: 'Two people on stage holding a framed certificate of achievement and an Africa-shaped award trophy',
     brief: 'The award plaque, photographed straight on, soft shadow.',
     tone: 'gold',
+    focus: '50% 40%',
   },
   'eligibility-youth': {
     alt: 'Young drummers and dancers in traditional red-and-white dress and coral beads',
@@ -90,10 +91,10 @@ export const shots = {
     focus: '50% 55%',
   },
   'culture-food': {
-    alt: 'Two women cook over a large pot outdoors',
+    alt: 'Grilled meat skewers, chicken and roast plantain with pounded yam and a fresh salad on a banana leaf',
     brief: 'Food: hands, fire, pots, a dish being shared.',
     tone: 'earth',
-    focus: '55% 50%',
+    focus: '50% 45%',
   },
   'culture-crafts': {
     alt: 'A woman weaves on a wooden hand loom',
@@ -114,10 +115,10 @@ export const shots = {
     focus: '50% 45%',
   },
   'nominate': {
-    alt: 'A smiling young man in a traditional woven sash',
+    alt: 'A woman in an ankara-print jacket holds a large green leaf against a clear sky',
     brief: 'A confident portrait of a young cultural entrepreneur in their own setting.',
     tone: 'forest',
-    focus: '50% 25%',
+    focus: '55% 70%',
   },
 } satisfies Record<string, Shot>
 

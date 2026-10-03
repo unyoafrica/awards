@@ -10,7 +10,7 @@
  */
 
 export type Field =
-  | { kind: 'text' | 'email' | 'tel' | 'url' | 'month'; name: string; label: string; required?: boolean; maxLength?: number; placeholder?: string; hint?: string; autoComplete?: string; half?: boolean }
+  | { kind: 'text' | 'email' | 'tel' | 'url' | 'date'; name: string; label: string; required?: boolean; maxLength?: number; placeholder?: string; hint?: string; autoComplete?: string; half?: boolean }
   | { kind: 'number'; name: string; label: string; required?: boolean; min: number; max: number; hint?: string; half?: boolean }
   | { kind: 'textarea'; name: string; label: string; required?: boolean; maxLength: number; rows: number; placeholder?: string; hint?: string }
   | { kind: 'select'; name: string; label: string; required?: boolean; options: { value: string; label: string }[]; placeholder?: string; hint?: string; half?: boolean }
@@ -118,7 +118,7 @@ export const sections: Section[] = [
         placeholder: 'Town/city, state and communities served',
       },
       { kind: 'select', name: 'organisationType', label: 'Type of initiative', options: opt(organisationTypes), placeholder: 'Select one', half: true },
-      { kind: 'month', name: 'startDate', label: 'When did its activities begin?', half: true },
+      { kind: 'date', name: 'startDate', label: 'When did its activities begin?', half: true },
       {
         kind: 'url',
         name: 'socialLink',
