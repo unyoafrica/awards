@@ -3,7 +3,9 @@ import { award, nav } from '../content'
 import wordmark from '../assets/brand/unyo-wordmark.png'
 import './Nav.css'
 
-export function Nav() {
+export function Nav({ page = 'home' }: { page?: 'home' | 'nominate' }) {
+  // Section links live on the home page; from other pages they go back to it.
+  const home = page === 'home' ? '' : 'index.html'
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -34,7 +36,7 @@ export function Nav() {
   return (
     <header className={`nav ${solid ? 'is-solid' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav__bar wrap">
-        <a className="nav__brand" href="#top">
+        <a className="nav__brand" href={`${home}#top`}>
           <img src={wordmark} alt={`${award.organiser}, back to top`} width="640" height="240" />
         </a>
 
@@ -42,13 +44,13 @@ export function Nav() {
           <ul>
             {nav.map((item) => (
               <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
+                <a href={home + item.href}>{item.label}</a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <a className="nav__cta" href="#nominate">
+        <a className="nav__cta" href={page === 'nominate' ? '#nomination-form' : 'nominate.html'}>
           Apply now
         </a>
 
@@ -70,7 +72,7 @@ export function Nav() {
           <ul>
             {nav.map((item, i) => (
               <li key={item.href} style={{ '--i': i } as React.CSSProperties}>
-                <a href={item.href} onClick={() => setOpen(false)}>
+                <a href={home + item.href} onClick={() => setOpen(false)}>
                   {item.label}
                 </a>
               </li>

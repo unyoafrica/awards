@@ -29,9 +29,9 @@ export function Nominate() {
               </li>
             ))}
           </ul>
-          <a className="btn btn--ink" href="#prepare">
+          <a className="btn btn--ink" href="nominate.html">
             {nominate.cta}
-            <Arrow direction="down" />
+            <Arrow />
           </a>
         </div>
       </div>

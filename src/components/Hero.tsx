@@ -33,7 +33,7 @@ export function Hero() {
             {hero.intro}
           </p>
           <div className="hero__actions" data-hero-fade>
-            <a className="btn btn--gold" href="#nominate">
+            <a className="btn btn--gold" href="nominate.html">
               {hero.primaryCta}
               <Arrow />
             </a>

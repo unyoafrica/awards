@@ -27,7 +27,7 @@ export const hero = {
   // VERIFY: supporting line.
   intro:
     'An award for youth-led Nigerian initiatives using cultural tourism to keep heritage alive and create real impact in their communities.',
-  primaryCta: 'Prepare your nomination',
+  primaryCta: 'Apply now',
   secondaryCta: 'See who qualifies',
 }
 
@@ -123,15 +123,15 @@ export const impact = {
 
 export const nominate = {
   heading: 'Know an initiative worth recognising?',
-  status: 'Nominations opening soon',
+  status: 'Nominations open now',
   // VERIFY: wording of the two nomination routes.
   routes: [
     { title: 'Nominate yourself', detail: 'Self-nominations are welcome.' },
     { title: 'Nominate someone else', detail: 'You can nominate an initiative you know.' },
   ],
-  cta: 'Prepare your nomination',
+  cta: 'Start your nomination',
   checklistHeading: 'What to prepare',
-  checklistIntro: 'Get these four things ready before nominations open.',
+  checklistIntro: 'Have these four things ready before you start the form.',
   // VERIFY: the detail line under each checklist item.
   checklist: [
     { key: 'People', title: 'The people behind the work', detail: 'Who leads the initiative, and who makes it happen.' },
@@ -165,8 +165,8 @@ export const faq = [
     a: 'On 29 October 2026 in Ibadan, Nigeria, at the 14th Youth Tourism & Hospitality Leaders Forum.',
   },
   {
-    q: 'When do nominations open?',
-    a: 'Nominations are opening soon. Use the checklist on this page to prepare in the meantime.',
+    q: 'How do I submit a nomination?',
+    a: 'Nominations are open. Use the nomination form; the checklist on this page shows what to have ready.',
   },
 ]
 

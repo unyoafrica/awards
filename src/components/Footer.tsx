@@ -3,7 +3,8 @@ import { Arrow } from './Arrow'
 import masterLogo from '../assets/brand/unyo-master-stacked.png'
 import './Footer.css'
 
-export function Footer() {
+export function Footer({ page = 'home' }: { page?: 'home' | 'nominate' }) {
+  const home = page === 'home' ? '' : 'index.html'
   return (
     <footer className="footer">
       <div className="footer__main grain">
@@ -12,21 +13,23 @@ export function Footer() {
           <p className="footer__line">
             {award.shortName} {award.year}. Presented {award.date}, {award.city}.
           </p>
-          <a className="btn btn--gold" href="#prepare">
-            Prepare your nomination
-            <Arrow />
-          </a>
+          {page === 'home' && (
+            <a className="btn btn--gold" href="nominate.html">
+              Apply now
+              <Arrow />
+            </a>
+          )}
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
           <ul>
             {nav.map((item) => (
               <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
+                <a href={home + item.href}>{item.label}</a>
               </li>
             ))}
             <li>
-              <a href="#top">Back to top</a>
+              <a href="#">Back to top</a>
             </li>
           </ul>
         </nav>
@@ -45,6 +48,7 @@ export function Footer() {
           />
           <div className="footer__base">
             <p className="meta">{award.foundation}</p>
+            <p className="meta">{award.organiser} is a Comemakewego.africa brand</p>
             <p className="meta">unyo.africa</p>
             <p className="meta">Photographs: Freepik</p>
             <p className="meta">
