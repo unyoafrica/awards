@@ -7,6 +7,8 @@ import './NominationForm.css'
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; message: string } | { kind: 'done'; reference: string; organisation: string; email: string; date: string }
 
+const liveFormUrl = 'https://unyoafrica.github.io/awards/nominate.html'
+
 /** Today's date in the visitor's time zone, as yyyy-mm-dd, the latest allowed start date. */
 const today = new Date().toLocaleDateString('en-CA')
 
@@ -66,7 +68,7 @@ function postThroughFrame(url: string, body: URLSearchParams) {
       form.remove()
       frame.remove()
       if (ok && !blocked) resolve()
-      else reject(new Error('Submission blocked'))
+      else reject(new Error(blocked ? 'blocked' : 'timeout'))
     }
 
     document.body.append(frame, form)
@@ -136,8 +138,12 @@ export function NominationForm() {
         email: values.nominatorEmail,
         date: new Date().toISOString(),
       })
-    } catch {
-      showError('Unable to connect. Your answers are still here. Please check your connection and try again.')
+    } catch (err) {
+      showError(
+        err instanceof Error && err.message === 'blocked'
+          ? `This page is not allowed to send nominations (this happens in previews). Please submit on ${liveFormUrl}.`
+          : 'Unable to connect. Your answers are still here. Please check your connection and try again.',
+      )
     }
   }
 
