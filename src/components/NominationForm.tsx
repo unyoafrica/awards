@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from 'react'
 import { award } from '../content'
 import { googleForm, nominationPage as page, sections, submissionKeys, type Field } from '../nomination'
 import partnerLogo from '../assets/brand/comemakewego-logo.png'
@@ -20,12 +20,61 @@ async function sendToGoogleForm(values: Record<string, string>) {
     const entry = googleForm.entries[key]
     if (entry && values[key]) body.append(entry, values[key])
   }
-  // Google Forms does not send CORS headers, so the response is opaque:
-  // a resolved request means it reached Google; a network failure throws.
-  await fetch(`https://docs.google.com/forms/d/e/${googleForm.formId}/formResponse`, {
-    method: 'POST',
-    mode: 'no-cors',
-    body,
+  const url = `https://docs.google.com/forms/d/e/${googleForm.formId}/formResponse`
+  try {
+    // Google Forms does not send CORS headers, so the response is opaque:
+    // a resolved request means it reached Google; a network failure throws.
+    await fetch(url, { method: 'POST', mode: 'no-cors', body })
+  } catch {
+    // Some hosts and embedded previews block script requests to other sites
+    // but still allow an ordinary form post, so try that before giving up.
+    await postThroughFrame(url, body)
+  }
+}
+
+/** Posts the answers as a plain HTML form into a hidden frame. Resolves once the frame loads the response. */
+function postThroughFrame(url: string, body: URLSearchParams) {
+  return new Promise<void>((resolve, reject) => {
+    const name = `google-form-${Date.now()}`
+    const frame = document.createElement('iframe')
+    frame.name = name
+    frame.title = 'Nomination submission'
+    frame.hidden = true
+
+    const form = document.createElement('form')
+    form.method = 'POST'
+    form.action = url
+    form.target = name
+    form.hidden = true
+    for (const [key, value] of body) {
+      const input = document.createElement('input')
+      input.type = 'hidden'
+      input.name = key
+      input.value = value
+      form.append(input)
+    }
+
+    let blocked = false
+    const onViolation = (e: SecurityPolicyViolationEvent) => {
+      // Only a blocked form post or frame matters here, not the earlier blocked request.
+      if (/^(form-action|frame-src|child-src)$/.test(e.effectiveDirective) && e.blockedURI.includes('docs.google.com')) blocked = true
+    }
+    let timer = 0
+    const finish = (ok: boolean) => {
+      window.clearTimeout(timer)
+      document.removeEventListener('securitypolicyviolation', onViolation)
+      form.remove()
+      frame.remove()
+      if (ok && !blocked) resolve()
+      else reject(new Error('Submission blocked'))
+    }
+
+    document.body.append(frame, form)
+    document.addEventListener('securitypolicyviolation', onViolation)
+    // Added after insertion so the frame's initial blank load is not counted.
+    frame.addEventListener('load', () => window.setTimeout(() => finish(true), 300), { once: true })
+    timer = window.setTimeout(() => finish(false), 15000)
+    form.submit()
   })
 }
 
@@ -39,9 +88,20 @@ export function NominationForm() {
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
   const referenceRef = useRef(newReference())
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const form = e.currentTarget
+    void submit(e.currentTarget)
+  }
+
+  // Sandboxed frames without form permission never fire the submit event,
+  // so the button runs the submission itself.
+  function onSubmitClick(e: MouseEvent<HTMLButtonElement>) {
+    if (!e.currentTarget.form) return
+    e.preventDefault()
+    void submit(e.currentTarget.form)
+  }
+
+  async function submit(form: HTMLFormElement) {
     if (!form.reportValidity()) return
 
     const data = new FormData(form)
@@ -247,7 +307,7 @@ export function NominationForm() {
                       <input id="companyWebsite" name="companyWebsite" tabIndex={-1} autoComplete="off" />
                     </div>
                     <div className="nom__submit">
-                      <button className="btn btn--gold" type="submit" disabled={status.kind === 'sending'}>
+                      <button className="btn btn--gold" type="submit" disabled={status.kind === 'sending'} onClick={onSubmitClick}>
                         {status.kind === 'sending' ? page.submitting : page.submit}
                       </button>
                       <p className="nom__hint">{page.submitNote}</p>
