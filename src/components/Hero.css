@@ -228,13 +228,12 @@
   }
 }
 
+/* Phones: a full-bleed landscape photo in its own row below the slogan. */
 @media (max-width: 599px) {
   .hero__media {
     grid-column: 1 / -1;
-    margin-left: 18%;
-    margin-right: calc(-1 * var(--gutter));
-    aspect-ratio: 4 / 5;
-    max-height: 70svh;
+    margin: 1.75rem calc(-1 * var(--gutter)) 0;
+    aspect-ratio: 3 / 2;
   }
 
   .hero__detail {
