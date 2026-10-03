@@ -41,11 +41,11 @@
   z-index: 2;
   align-self: center;
   font-family: var(--font-display);
-  font-size: var(--step-5);
-  font-weight: 700;
-  font-stretch: 84%;
-  line-height: 0.86;
-  letter-spacing: -0.035em;
+  /* Sized so the widest line ("Our stories.") ends before the photo column. */
+  font-size: clamp(3.4rem, 0.6rem + 8vw, 10rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
   pointer-events: none;
 }
 

@@ -114,7 +114,7 @@
 
 .award__stage-forum {
   grid-column: 1 / 9;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: var(--step-3);
   font-style: italic;
   line-height: 1.04;

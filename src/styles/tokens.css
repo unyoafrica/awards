@@ -30,9 +30,9 @@
   --color-focus: var(--gold-500);
 
   /* Type */
-  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
-  --font-body: 'Source Serif 4 Variable', Georgia, serif;
-  --font-mono: var(--font-display); /* utility labels use the condensed display cut */
+  --font-display: 'EB Garamond Variable', 'EB Garamond', Garamond, Georgia, serif;
+  --font-body: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: var(--font-body); /* labels, buttons and navigation */
 
   --step--1: clamp(0.84rem, 0.8rem + 0.15vw, 0.92rem);
   --step-0: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);

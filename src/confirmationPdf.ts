@@ -7,9 +7,9 @@ import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, rgb, type PDFFont, type PDFPage } from 'pdf-lib'
 import { award } from './content'
 import { nominationPage, sections } from './nomination'
-import displayFontUrl from './assets/fonts/bricolage-700-pdf.ttf?inline'
-import bodyFontUrl from './assets/fonts/source-serif-400-pdf.ttf?inline'
-import bodyStrongFontUrl from './assets/fonts/source-serif-600-pdf.ttf?inline'
+import displayFontUrl from './assets/fonts/eb-garamond-600-pdf.ttf?inline'
+import bodyFontUrl from './assets/fonts/inter-400-pdf.ttf?inline'
+import bodyStrongFontUrl from './assets/fonts/inter-600-pdf.ttf?inline'
 import wordmarkUrl from './assets/brand/unyo-wordmark.png?inline'
 
 export type Confirmation = {
@@ -160,8 +160,8 @@ export async function buildConfirmationPdf(data: Confirmation) {
   const logoH = 40
   const logoW = (logo.width / logo.height) * logoH
   page.drawImage(logo, { x: M - 4, y: A4.h - 30 - logoH, width: logoW, height: logoH })
-  label(page, display, 'Nomination confirmation', A4.w - M, A4.h - 46, c.forest, 7.5, 'right')
-  label(page, display, `${award.shortName} ${award.year}`, A4.w - M, A4.h - 59, c.muted, 7, 'right')
+  label(page, strong, 'Nomination confirmation', A4.w - M, A4.h - 46, c.forest, 7.5, 'right')
+  label(page, strong, `${award.shortName} ${award.year}`, A4.w - M, A4.h - 59, c.muted, 7, 'right')
 
   // Layout runs top-down: `top(n)` is n points below the page's top edge.
   const top = (n: number) => A4.h - n
@@ -180,7 +180,7 @@ export async function buildConfirmationPdf(data: Confirmation) {
   page.drawCircle({ x: sealX, y: sealY, size: 38, color: c.gold })
   page.drawSvgPath('M -14 1 L -5 10 L 15 -11', { x: sealX, y: sealY, borderColor: c.forest, borderWidth: 5, borderLineCap: 1 })
 
-  label(page, display, nominationPage.confirmation.eyebrow, M, top(bandTop + 40), c.gold, 8)
+  label(page, strong, nominationPage.confirmation.eyebrow, M, top(bandTop + 40), c.gold, 8)
   const headingEnd = para(page, display, nominationPage.confirmation.heading, { x: M, y: top(bandTop + 48), size: 31, leading: 33, width: 300, color: c.cotton })
   para(page, body, 'Keep your reference number for any follow-up.', { x: M, y: headingEnd - 6, size: 10.5, width: 300, color: hex('#e8dfcf') })
 
@@ -189,8 +189,8 @@ export async function buildConfirmationPdf(data: Confirmation) {
   const cardH = 78
   page.drawRectangle({ x: M, y: top(cardTop + cardH), width: inner, height: cardH, color: c.paper, borderColor: c.rule, borderWidth: 0.6 })
   page.drawRectangle({ x: M, y: top(cardTop + cardH), width: 4, height: cardH, color: c.gold })
-  label(page, display, nominationPage.confirmation.referenceLabel, M + 24, top(cardTop + 24))
-  drawText(page, display, data.reference, { x: M + 24, y: top(cardTop + 56), size: 22, color: c.forest })
+  label(page, strong, nominationPage.confirmation.referenceLabel, M + 24, top(cardTop + 24))
+  drawText(page, strong, data.reference, { x: M + 24, y: top(cardTop + 56), size: 20, color: c.forest })
 
   // Submission time in West Africa Time, the award's home time zone.
   const submitted = new Date(data.date)
@@ -198,13 +198,13 @@ export async function buildConfirmationPdf(data: Confirmation) {
   const time = submitted.toLocaleTimeString('en-GB', { timeZone: 'Africa/Lagos', hour: '2-digit', minute: '2-digit' })
   const colX = M + inner - 150
   page.drawLine({ start: { x: colX - 22, y: top(cardTop + 16) }, end: { x: colX - 22, y: top(cardTop + cardH - 16) }, thickness: 0.6, color: c.rule })
-  label(page, display, 'Submitted', colX, top(cardTop + 24))
+  label(page, strong, 'Submitted', colX, top(cardTop + 24))
   drawText(page, strong, day, { x: colX, y: top(cardTop + 44), size: 11.5, color: c.ink })
   drawText(page, body, `${time} WAT`, { x: colX, y: top(cardTop + 59), size: 9.5, color: c.muted })
 
   // Nomination summary.
   let y = top(cardTop + cardH + 32)
-  label(page, display, 'Nomination summary', M, y, c.forest, 8)
+  label(page, strong, 'Nomination summary', M, y, c.forest, 8)
   y -= 10
   const optionLabel = (name: string, value: string) => {
     for (const s of sections) for (const f of s.fields) if (f.name === name && f.kind === 'select') return f.options.find((o) => o.value === value)?.label ?? value
@@ -223,14 +223,14 @@ export async function buildConfirmationPdf(data: Confirmation) {
   for (const [k, v, maxLines] of rows) {
     if (!v) continue
     page.drawLine({ start: { x: M, y }, end: { x: A4.w - M, y }, thickness: 0.5, color: c.rule })
-    label(page, display, k, M, y - 14.5, c.muted, 6.6)
+    label(page, strong, k, M, y - 14.5, c.muted, 6.6)
     y = para(page, body, v, { x: M + keyW, y: y - 3, size: 10, leading: 14, width: inner - keyW, color: c.ink, maxLines }) - 5
   }
   page.drawLine({ start: { x: M, y }, end: { x: A4.w - M, y }, thickness: 0.5, color: c.rule })
 
   // What happens next: wording taken from the form and site copy.
   y -= 30
-  label(page, display, 'What happens next', M, y, c.forest, 8)
+  label(page, strong, 'What happens next', M, y, c.forest, 8)
   y -= 12
   const steps: [string, string][] = [
     ['Review', nominationPage.confirmation.body.split('. ')[0] + '.'],
@@ -242,8 +242,8 @@ export async function buildConfirmationPdf(data: Confirmation) {
   steps.forEach(([title, text], i) => {
     const x = M + i * (stepW + gap)
     page.drawRectangle({ x, y: y - 2, width: stepW, height: 2, color: i === 0 ? c.gold : c.forest })
-    page.drawText(`0${i + 1}`, { x, y: y - 20, size: 8.5, font: display, color: c.goldDark })
-    page.drawText(title, { x: x + 19, y: y - 20, size: 10.5, font: display, color: c.forest })
+    page.drawText(`0${i + 1}`, { x, y: y - 20, size: 8, font: strong, color: c.goldDark })
+    page.drawText(title, { x: x + 19, y: y - 20, size: 12, font: display, color: c.forest })
     para(page, body, text, { x, y: y - 26, size: 8.6, leading: 12.4, width: stepW, color: c.inkSoft, maxLines: 5 })
   })
 
@@ -259,17 +259,17 @@ export async function buildConfirmationPdf(data: Confirmation) {
   const factW = inner / 3
   facts.forEach(([k, v], i) => {
     const x = M + 20 + i * factW
-    label(page, display, k, x, top(stripTop + 21), c.gold, 6.4)
+    label(page, strong, k, x, top(stripTop + 21), c.gold, 6.4)
     drawText(page, display, v, { x, y: top(stripTop + 41), size: i === 0 ? 16 : 12.5, color: c.cotton })
     if (i) page.drawLine({ start: { x: x - 20, y: top(stripTop + 12) }, end: { x: x - 20, y: top(stripTop + stripH - 12) }, thickness: 0.5, color: c.gold, opacity: 0.4 })
   })
-  label(page, display, `At the ${award.forum}`, M, top(stripTop + stripH + 15), c.muted, 6.4)
+  label(page, strong, `At the ${award.forum}`, M, top(stripTop + stripH + 15), c.muted, 6.4)
 
   // Footer.
   const footTop = 782
   page.drawLine({ start: { x: M, y: top(footTop) }, end: { x: A4.w - M, y: top(footTop) }, thickness: 0.5, color: c.rule })
   para(page, body, nominationPage.confirmation.footnote, { x: M, y: top(footTop + 6), size: 8.2, leading: 11.5, width: inner - 170, color: c.muted })
-  label(page, display, 'unyo.africa', A4.w - M, top(footTop + 16), c.forest, 7.5, 'right')
+  label(page, strong, 'unyo.africa', A4.w - M, top(footTop + 16), c.forest, 7.5, 'right')
   const copy = `© ${award.year} ${award.organiser}`
   drawText(page, body, copy, { x: A4.w - M - body.widthOfTextAtSize(copy, 7.5), y: top(footTop + 29), size: 7.5, color: c.muted })
 

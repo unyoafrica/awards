@@ -21,7 +21,7 @@
 
 .footer__line {
   max-width: 22ch;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: var(--step-2);
   font-style: italic;
   line-height: 1.12;
@@ -38,7 +38,7 @@
 .footer__nav a {
   display: inline-block;
   padding-block: 0.35rem;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-weight: 500;
   text-decoration: none;
   color: var(--color-on-primary-muted);
