@@ -2,10 +2,11 @@ import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } f
 import { award } from '../content'
 import { googleForm, nominationPage as page, sections, submissionKeys, type Field } from '../nomination'
 import partnerLogo from '../assets/brand/comemakewego-logo.png'
+import type { Confirmation } from '../confirmationPdf'
 import { Photo } from './Photo'
 import './NominationForm.css'
 
-type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; message: string } | { kind: 'done'; reference: string; organisation: string; email: string; date: string }
+type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; message: string } | ({ kind: 'done' } & Confirmation)
 
 const liveFormUrl = 'https://unyoafrica.github.io/awards/nominate.html'
 
@@ -85,6 +86,7 @@ export function NominationForm() {
   const messageRef = useRef<HTMLParagraphElement>(null)
   const confirmRef = useRef<HTMLHeadingElement>(null)
   const [copied, setCopied] = useState(false)
+  const [pdfState, setPdfState] = useState<'idle' | 'working' | 'failed'>('idle')
   const [nominationType, setNominationType] = useState('My own initiative')
   const [counts, setCounts] = useState<Record<string, number>>({})
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
@@ -134,9 +136,14 @@ export function NominationForm() {
       setStatus({
         kind: 'done',
         reference: values.submissionId,
-        organisation: values.organisation,
-        email: values.nominatorEmail,
         date: new Date().toISOString(),
+        organisation: values.organisation,
+        nominatorName: values.nominatorName,
+        email: values.nominatorEmail,
+        nominationType: values.nominationType,
+        leadName: values.leadName,
+        location: values.location,
+        category: values.category,
       })
     } catch (err) {
       showError(
@@ -147,17 +154,16 @@ export function NominationForm() {
     }
   }
 
-  function downloadReceipt() {
+  async function downloadReceipt() {
     if (status.kind !== 'done') return
-    const text = `${award.name.toUpperCase()} ${award.year}\nNomination confirmation\n\nReference: ${status.reference}\nInitiative: ${status.organisation}\nSubmitted: ${status.date}\nNominator email: ${status.email}\n\n${page.confirmation.body} ${page.confirmation.footnote}\n`
-    const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }))
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'Unyo-Nomination-Confirmation.txt'
-    document.body.append(a)
-    a.click()
-    a.remove()
-    setTimeout(() => URL.revokeObjectURL(url), 1000)
+    setPdfState('working')
+    try {
+      const { downloadConfirmationPdf } = await import('../confirmationPdf')
+      await downloadConfirmationPdf(status)
+      setPdfState('idle')
+    } catch {
+      setPdfState('failed')
+    }
   }
 
   const done = status.kind === 'done'
@@ -228,10 +234,15 @@ export function NominationForm() {
                 <a className="btn btn--gold" href="index.html">
                   {page.confirmation.back}
                 </a>
-                <button type="button" className="btn btn--ghost" onClick={downloadReceipt}>
-                  Download confirmation
+                <button type="button" className="btn btn--ghost" onClick={downloadReceipt} disabled={pdfState === 'working'}>
+                  {pdfState === 'working' ? 'Preparing PDF…' : 'Download confirmation (PDF)'}
                 </button>
               </div>
+              {pdfState === 'failed' && (
+                <p className="nom__success-note" role="alert">
+                  The PDF could not be created. Please note your reference number above.
+                </p>
+              )}
             </div>
             <Photo shot="nominate" priority className="nom__success-photo" />
           </div>
