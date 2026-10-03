@@ -49,7 +49,7 @@ export function Nav() {
         </nav>
 
         <a className="nav__cta" href="#nominate">
-          Nominations soon
+          Apply now
         </a>
 
         <button
