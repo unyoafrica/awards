@@ -55,10 +55,10 @@ export const shots = {
     focus: '50% 40%',
   },
   'award-plaque': {
-    alt: 'Two people on stage holding a framed certificate of achievement and an Africa-shaped award trophy',
-    brief: 'The award plaque, photographed straight on, soft shadow.',
+    alt: 'A smiling woman in a green and gold headwrap holds the Africa-shaped Únyọ Cultural Tourism Impact Award 2026 on stage',
+    brief: 'The award plaque held on stage, the Únyọ logo on screen behind.',
     tone: 'gold',
-    focus: '50% 40%',
+    focus: '45% 45%',
   },
   'eligibility-youth': {
     alt: 'Young drummers and dancers in traditional red-and-white dress and coral beads',
