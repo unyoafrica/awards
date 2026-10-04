@@ -61,7 +61,8 @@
 
 .award__plaque {
   grid-column: 1 / 6;
-  aspect-ratio: 4 / 5;
+  /* Square, like the photo, so the whole picture shows: no cropping of the headwrap or the award. */
+  aspect-ratio: 1 / 1;
 }
 
 .award__items {
@@ -177,8 +178,6 @@
 
   .award__plaque {
     grid-column: 1 / -1;
-    /* Square, like the photo, so the face and the full award both stay in view. */
-    aspect-ratio: 1 / 1;
     margin-bottom: 2rem;
   }
 
