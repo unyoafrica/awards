@@ -38,7 +38,8 @@ export const manifesto = {
 
 export const prize = {
   heading: 'Good work deserves room to grow.',
-  intro: 'One outstanding initiative. Recognition that helps the work continue.',
+  intro:
+    'From community tours to indigenous food, crafts and heritage storytelling, young Nigerians are creating new ways to experience our culture. This award recognises that work and supports its next chapter.',
   items: [
     { title: 'Development support grant', detail: '₦100,000 to support the winning venture’s cultural tourism work.' },
     { title: 'Award plaque', detail: 'A lasting recognition of your contribution.' },
