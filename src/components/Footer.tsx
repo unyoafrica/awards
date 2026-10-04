@@ -15,7 +15,7 @@ export function Footer({ page = 'home' }: { page?: 'home' | 'nominate' }) {
           </p>
           {page === 'home' && (
             <a className="btn btn--gold" href="nominate.html">
-              Apply now
+              Nominate now
               <Arrow />
             </a>
           )}

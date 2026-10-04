@@ -50,6 +50,9 @@ export function Judging() {
             </li>
           ))}
         </ol>
+        <p className="judging__note" data-reveal="fade">
+          {judging.juryNote}
+        </p>
       </div>
     </section>
   )

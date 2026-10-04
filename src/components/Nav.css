@@ -31,8 +31,17 @@
 .nav__brand img {
   display: block;
   width: auto;
-  height: 3.4rem;
-  margin-left: -0.5rem;
+}
+
+/* Head mark, then the wordmark beside it. */
+.nav__icon {
+  height: 3rem;
+}
+
+.nav__wordmark {
+  height: 3.1rem;
+  /* The wordmark artwork carries its own side padding. */
+  margin-left: -0.25rem;
 }
 
 .nav__links ul {

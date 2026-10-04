@@ -10,7 +10,7 @@ export function Faq() {
     <section className="faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq__grid">
         <h2 id="faq-title" className="faq__title">
-          Questions
+          Before you nominate.
         </h2>
         <div className="faq__list">
           {faq.map((item, i) => {

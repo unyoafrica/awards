@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { award, nav } from '../content'
+import headIcon from '../assets/brand/unyo-head-icon.png'
 import wordmark from '../assets/brand/unyo-wordmark.png'
 import './Nav.css'
 
@@ -37,7 +38,8 @@ export function Nav({ page = 'home' }: { page?: 'home' | 'nominate' }) {
     <header className={`nav ${solid ? 'is-solid' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav__bar wrap">
         <a className="nav__brand" href={`${home}#top`}>
-          <img src={wordmark} alt={`${award.organiser}, back to top`} width="640" height="240" />
+          <img className="nav__icon" src={headIcon} alt="" width="240" height="240" />
+          <img className="nav__wordmark" src={wordmark} alt={`${award.organiser}, back to top`} width="640" height="240" />
         </a>
 
         <nav className="nav__links" aria-label="Sections">
@@ -51,7 +53,7 @@ export function Nav({ page = 'home' }: { page?: 'home' | 'nominate' }) {
         </nav>
 
         <a className="nav__cta" href={page === 'nominate' ? '#nomination-form' : 'nominate.html'}>
-          Apply now
+          Nominate now
         </a>
 
         <button

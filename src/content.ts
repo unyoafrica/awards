@@ -2,10 +2,8 @@
  * All page copy lives here so it can be checked line by line against the
  * source site (unyo-cultural-tourism-award.miztaatabo.chatgpt.site).
  *
- * Facts (grant, date, venue, forum, eligibility, criteria, weights) are taken
- * from the project brief and must not change. Strings marked `VERIFY` are
- * short connective copy written for this build because the source could not
- * be reached; replace them with the source wording where it differs.
+ * Copy follows the source landing page; facts (grant, date, venue, forum,
+ * eligibility, criteria, weights) must not change.
  */
 
 export const award = {
@@ -24,33 +22,27 @@ export const award = {
 
 export const hero = {
   lines: ['Our culture.', 'Our stories.', 'Your impact.'],
-  // VERIFY: supporting line.
   intro:
-    'An award for youth-led Nigerian initiatives using cultural tourism to keep heritage alive and create real impact in their communities.',
-  primaryCta: 'Apply now',
-  secondaryCta: 'See who qualifies',
+    'For young Nigerians keeping our culture and traditions alive through tourism. One outstanding initiative. Recognition that helps the work continue.',
+  note: 'Self-nominations and nominations of others welcome. Nominations are open.',
+  primaryCta: 'Nominate now',
+  secondaryCta: 'Explore the award',
 }
 
 export const manifesto = {
   lines: ['Rooted in heritage.', 'Built for the future.'],
   statement:
-    'Culture is not something we preserve behind glass. It is something people are actively carrying forward.',
-  // VERIFY: body copy.
-  body: [
-    'Across Nigeria, young people are guiding heritage walks, staging festivals, cooking the food of their grandparents and teaching crafts to visitors. That work protects culture and brings tourism home to communities.',
-    'The Únyọ Africa Cultural Tourism Impact Award exists to recognise it.',
-  ],
+    'From community tours to indigenous food, crafts and heritage storytelling, young Nigerians are creating new ways to experience our culture.',
+  body: ['This award recognises that work and supports its next chapter.'],
 }
 
 export const prize = {
-  // VERIFY: section heading and intro.
-  heading: 'What the winner receives',
-  intro:
-    'One initiative will be recognised for the impact of its cultural tourism work.',
+  heading: 'Good work deserves room to grow.',
+  intro: 'One outstanding initiative. Recognition that helps the work continue.',
   items: [
-    { title: 'Development support grant', detail: '₦100,000 to support the next stage of the work.' },
-    { title: 'Award plaque', detail: 'A plaque marking the inaugural award.' },
-    { title: 'Certificate of recognition', detail: 'Formal recognition of the initiative and the people behind it.' },
+    { title: 'Development support grant', detail: '₦100,000 to support the winning venture’s cultural tourism work.' },
+    { title: 'Award plaque', detail: 'A lasting recognition of your contribution.' },
+    { title: 'Certificate of recognition', detail: 'Celebrating the initiative and the people behind it.' },
   ],
   presentation: {
     label: 'Presented at the',
@@ -62,25 +54,25 @@ export const prize = {
 
 export const eligibility = {
   heading: 'Who qualifies',
-  // VERIFY: intro and the detail line under each requirement.
-  intro: 'Initiatives must meet all three requirements.',
+  intro:
+    'Open to youth-led Nigerian startups, companies, social enterprises and organised initiatives with real cultural tourism work to show.',
   items: [
     {
       n: '01',
       title: 'Youth-led & Nigerian',
-      detail: 'The initiative is led by young people and based in Nigeria.',
+      detail: 'Founded or substantially led by a young Nigerian, with its main cultural tourism impact in Nigeria.',
       image: 'eligibility-youth',
     },
     {
       n: '02',
       title: 'Active in the past two years',
-      detail: 'The work has been running within the last two years.',
+      detail: 'Show the activities you have carried out during the past two years, beyond an idea or a proposed project.',
       image: 'eligibility-active',
     },
     {
       n: '03',
       title: 'Evidence of impact',
-      detail: 'You can show what the work has changed, for people and for culture.',
+      detail: 'Share social posts, videos, websites or other links that show your work, its consistency and who benefits.',
       image: 'eligibility-impact',
     },
   ],
@@ -88,8 +80,7 @@ export const eligibility = {
 
 export const culture = {
   heading: 'Culture in action',
-  // VERIFY: intro.
-  intro: 'The award celebrates cultural tourism in all its forms, including:',
+  intro: 'Your work could include:',
   areas: [
     { title: 'Heritage tours', image: 'culture-heritage' },
     { title: 'Festivals & traditions', image: 'culture-festivals' },
@@ -102,8 +93,8 @@ export const culture = {
 
 export const judging = {
   heading: 'How we judge',
-  // VERIFY: intro.
-  intro: 'Every eligible nomination is scored against six weighted criteria.',
+  intro:
+    'An independent jury will assess the substance of each nomination using a weighted framework. A small initiative making a deep difference in one community can stand alongside a much larger venture.',
   criteria: [
     { weight: 25, title: 'Cultural preservation & promotion' },
     { weight: 25, title: 'Demonstrated impact' },
@@ -112,61 +103,55 @@ export const judging = {
     { weight: 10, title: 'Innovation & quality of approach' },
     { weight: 10, title: 'Potential for continued impact' },
   ],
+  juryNote: 'Jury members will declare relevant relationships and step aside where a conflict of interest exists.',
 }
 
 export const impact = {
   a: 'Impact',
   b: 'Popularity',
   statement: 'Impact over popularity.',
-  detail: 'No public voting. Followers and likes do not determine the winner.',
+  detail:
+    'No public voting. Followers and likes do not determine the winner. Social links help verify activity and engagement.',
 }
 
 export const nominate = {
   heading: 'Know an initiative worth recognising?',
-  status: 'Nominations open now',
-  // VERIFY: wording of the two nomination routes.
+  status: 'Nominations are open',
   routes: [
-    { title: 'Nominate yourself', detail: 'Self-nominations are welcome.' },
-    { title: 'Nominate someone else', detail: 'You can nominate an initiative you know.' },
+    { title: 'Nominate yourself', detail: 'Nominate your own venture.' },
+    { title: 'Nominate someone else', detail: 'Or someone whose work deserves a wider audience.' },
   ],
-  cta: 'Start your nomination',
-  checklistHeading: 'What to prepare',
-  checklistIntro: 'Have these four things ready before you start the form.',
-  // VERIFY: the detail line under each checklist item.
+  cta: 'Nominate now',
+  checklistHeading: 'What to have ready',
+  checklistIntro: 'Start gathering the evidence that tells the story.',
   checklist: [
-    { key: 'People', title: 'The people behind the work', detail: 'Who leads the initiative, and who makes it happen.' },
-    { key: 'Story', title: 'Your cultural tourism story', detail: 'What you do, where, and the culture it carries forward.' },
-    { key: 'Evidence', title: 'Evidence we can see', detail: 'Photos, links, numbers or testimonies that show the work and its impact.' },
-    { key: 'Next step', title: 'The next step', detail: 'Where the initiative goes next, and how the grant would help.' },
+    { key: 'People', title: 'The people behind the work', detail: 'Organisation name, founder or lead, location and contact details.' },
+    { key: 'Story', title: 'Your cultural tourism story', detail: 'What you do, the culture or traditions you promote, and your activities during the past two years.' },
+    { key: 'Evidence', title: 'Evidence we can see', detail: 'Social media or website links, examples of activities and evidence of community benefit.' },
+    { key: 'Next step', title: 'The next step', detail: 'How the ₦100,000 would support your work if selected.' },
   ],
 }
 
-// VERIFY: replace with the source FAQ wording. Every answer below restates
-// facts already given in the brief; nothing new is claimed.
 export const faq = [
   {
-    q: 'Who can be nominated?',
-    a: 'Youth-led Nigerian initiatives that have been active in the past two years and can show evidence of impact.',
+    q: 'Can I nominate myself?',
+    a: 'Yes. You can nominate your own organisation or another eligible initiative. Provide evidence that the jury can review.',
   },
   {
-    q: 'Can I nominate my own initiative?',
-    a: 'Yes. Self-nominations are welcome, and you can also nominate an initiative run by someone else.',
+    q: 'Do I need a large social media following?',
+    a: 'No. Social links are evidence of activity and engagement. The jury prioritises cultural impact, consistent work and community benefit.',
   },
   {
-    q: 'Is there public voting?',
-    a: 'No. There is no public voting, and followers and likes do not determine the winner. Nominations are judged on six weighted criteria.',
+    q: 'Does the initiative need to be a registered company?',
+    a: 'The award welcomes startups, companies, social enterprises and formally or informally organised initiatives. The work must be real, youth-led and verifiable.',
   },
   {
-    q: 'What does the winner receive?',
-    a: 'A ₦100,000 development support grant, an award plaque and a certificate of recognition.',
+    q: 'What does “active during the past two years” mean?',
+    a: 'Share the cultural tourism activities undertaken within the last two years and evidence of consistency. The date of registration alone does not demonstrate activity.',
   },
   {
-    q: 'When and where is the award presented?',
-    a: 'On 29 October 2026 in Ibadan, Nigeria, at the 14th Youth Tourism & Hospitality Leaders Forum.',
-  },
-  {
-    q: 'How do I submit a nomination?',
-    a: 'Nominations are open. Use the nomination form; the checklist on this page shows what to have ready.',
+    q: 'When and where will the award be presented?',
+    a: 'The inaugural award is planned for 29 October 2026 at the 14th Youth Tourism & Hospitality Leaders Forum in Ibadan, Nigeria.',
   },
 ]
 

@@ -25,6 +25,13 @@
   color: var(--ink-700);
 }
 
+.judging__note {
+  margin-top: 2rem;
+  max-width: 60ch;
+  font-size: var(--step--1);
+  color: var(--ink-700);
+}
+
 .judging__whole {
   display: flex;
   gap: 3px;

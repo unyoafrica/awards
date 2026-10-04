@@ -71,19 +71,23 @@
   min-height: 26rem;
 }
 
-.hero__photo {
+.hero__trophy {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  filter: drop-shadow(0 34px 40px rgb(0 0 0 / 0.45));
 }
 
-.hero__detail {
+/* A soft gold light behind the award. */
+.hero__media::before {
+  content: '';
   position: absolute;
-  left: -18%;
-  bottom: -1.25rem;
-  width: 36%;
-  aspect-ratio: 4 / 5;
-  box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.5);
-  z-index: 1;
+  inset: 8% -6% 4%;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--gold-500) 30%, transparent), transparent);
+  pointer-events: none;
 }
 
 .hero__intro {
@@ -101,6 +105,11 @@
   line-height: 1.02;
   letter-spacing: -0.02em;
   max-width: 18ch;
+}
+
+.hero__note {
+  font-size: var(--step--1);
+  color: var(--color-on-primary-muted);
 }
 
 .hero__lede {
@@ -190,24 +199,15 @@
     padding-left: 12%;
   }
 
+  /* The award sits centred in its own row below the slogan. */
   .hero__media {
-    grid-column: 2 / -1;
+    grid-column: 1 / -1;
     grid-row: 3;
-    margin: -0.3em 0 0;
-    font-size: clamp(3.3rem, 17.5vw, 9rem);
+    justify-self: center;
+    width: min(100%, 26rem);
+    margin: 2rem 0 0;
     min-height: 0;
-    aspect-ratio: 5 / 4;
-  }
-
-  .hero__photo {
-    inset: 0;
-  }
-
-  .hero__detail {
-    left: auto;
-    right: calc(-1 * var(--gutter));
-    bottom: -1.5rem;
-    width: 30%;
+    aspect-ratio: 900 / 1166;
   }
 
   .hero__intro {
@@ -228,16 +228,10 @@
   }
 }
 
-/* Phones: a full-bleed landscape photo in its own row below the slogan. */
 @media (max-width: 599px) {
   .hero__media {
-    grid-column: 1 / -1;
-    margin: 1.75rem calc(-1 * var(--gutter)) 0;
-    aspect-ratio: 3 / 2;
-  }
-
-  .hero__detail {
-    display: none;
+    width: min(100%, 22rem);
+    margin-top: 1.75rem;
   }
 
   .hero__facts {

@@ -1,5 +1,5 @@
 import { award, hero } from '../content'
-import { Photo } from './Photo'
+import trophy from '../assets/hero-trophy.webp'
 import { Arrow } from './Arrow'
 import './Hero.css'
 
@@ -21,8 +21,14 @@ export function Hero() {
         </p>
 
         <div className="hero__media" data-hero-media>
-          <Photo shot="hero-guide" priority parallax className="hero__photo" />
-          <Photo shot="hero-detail" priority decorative optional className="hero__detail" />
+          <img
+            className="hero__trophy"
+            src={trophy}
+            alt="The Cultural Tourism Impact Award 2026: an Africa-shaped wooden award bearing the Únyọ logo, on a plinth engraved ‘Recognising cultural impact’"
+            width="900"
+            height="1166"
+            fetchPriority="high"
+          />
         </div>
 
         <div className="hero__intro">
@@ -37,10 +43,13 @@ export function Hero() {
               {hero.primaryCta}
               <Arrow />
             </a>
-            <a className="btn btn--ghost" href="#qualify">
+            <a className="btn btn--ghost" href="#award">
               {hero.secondaryCta}
             </a>
           </div>
+          <p className="hero__note" data-hero-fade>
+            {hero.note}
+          </p>
         </div>
 
         <dl className="hero__facts" data-hero-fade>
