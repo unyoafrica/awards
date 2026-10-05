@@ -3,135 +3,111 @@
   background: var(--cotton-50);
 }
 
-.qualify__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-}
-
-.qualify__aside {
-  grid-column: 1 / 5;
-}
-
-.qualify__sticky {
-  position: sticky;
-  top: 7rem;
-  display: grid;
-  gap: 1.25rem;
-}
-
 .qualify__title {
   font-size: var(--step-4);
-  font-stretch: 82%;
-  line-height: 0.88;
+  line-height: 0.9;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-
+/* The three requirements read across as one row, divided by hairlines. */
 .qualify__list {
-  grid-column: 6 / 13;
   display: grid;
-  gap: clamp(4rem, 9vw, 8rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 2px solid var(--forest-900);
 }
 
 .qualify__item {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  align-items: end;
+  align-content: start;
+  gap: 1rem;
+  padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1.25rem, 2.5vw, 2.5rem) clamp(2rem, 3vw, 3rem);
+  transition: background-color var(--dur) ease;
 }
 
-.qualify__text {
-  grid-column: 1 / 4;
-  grid-row: 1;
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: 0.9rem;
-  padding-bottom: 1rem;
+.qualify__item:first-child {
+  padding-left: 0;
+}
+
+.qualify__item:last-child {
+  padding-right: 0;
+}
+
+.qualify__item + .qualify__item {
+  border-left: 1px solid var(--color-border);
+}
+
+/* A short gold mark over the rule, one per requirement. */
+.qualify__item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: clamp(1.25rem, 2.5vw, 2.5rem);
+  width: 3rem;
+  height: 4px;
+  background: var(--gold-500);
+}
+
+.qualify__item:first-child::before {
+  left: 0;
 }
 
 .qualify__n {
   font-family: var(--font-display);
-  font-size: clamp(5.5rem, 3rem + 9vw, 13rem);
-  font-weight: 800;
-  font-stretch: 78%;
+  font-size: clamp(3.5rem, 2rem + 4vw, 6.5rem);
+  font-weight: 600;
   font-variant-numeric: lining-nums;
-  line-height: 0.75;
-  letter-spacing: -0.06em;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
   color: var(--forest-900);
+}
+
+.qualify__item:nth-child(2) .qualify__n {
+  color: var(--gold-600);
 }
 
 .qualify__item-title {
   font-size: var(--step-2);
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  max-width: 12ch;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  max-width: 14ch;
 }
 
 .qualify__detail {
-  max-width: 30ch;
+  max-width: 34ch;
   color: var(--ink-700);
 }
 
-.qualify__photo {
-  grid-column: 4 / 8;
-  grid-row: 1;
-  aspect-ratio: 4 / 5;
-}
-
-/* Alternate the composition so the column reads as a sequence, not a stack. */
-.qualify__item--2 .qualify__text {
-  grid-column: 5 / 8;
-}
-
-.qualify__item--2 .qualify__photo {
-  grid-column: 1 / 5;
-}
-
-.qualify__item--2 .qualify__n {
-  color: var(--gold-600);
-}
-
-.qualify__item--3 .qualify__n {
-  color: var(--forest-700);
-}
-
-@media (max-width: 1023px) {
-  .qualify__aside,
+/* Phones: stack the requirements, each opening with its own rule. */
+@media (max-width: 767px) {
   .qualify__list {
-    grid-column: 1 / -1;
-  }
-
-  .qualify__sticky {
-    position: static;
-    margin-bottom: 3.5rem;
-  }
-}
-
-@media (max-width: 599px) {
-  .qualify__item,
-  .qualify__item--2 {
     grid-template-columns: 1fr;
+    border-top: 0;
   }
 
-  .qualify__item .qualify__text,
-  .qualify__item--2 .qualify__text {
-    grid-column: 1;
-    grid-row: 2;
-    padding-top: 1.25rem;
-    padding-bottom: 0;
+  .qualify__item,
+  .qualify__item:first-child,
+  .qualify__item:last-child {
+    padding: 1.75rem 0 2.25rem;
+    border-top: 2px solid var(--forest-900);
   }
 
-  .qualify__item .qualify__photo,
-  .qualify__item--2 .qualify__photo {
-    grid-column: 1;
-    grid-row: 1;
-    aspect-ratio: 4 / 3;
+  .qualify__item + .qualify__item {
+    border-left: 0;
+  }
+
+  .qualify__item::before,
+  .qualify__item:first-child::before {
+    left: 0;
+  }
+
+  .qualify__item {
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
   }
 
   .qualify__n {
-    margin-top: -0.55em;
-    position: relative;
+    grid-row: span 2;
+    font-size: 3.5rem;
   }
 }

@@ -52,19 +52,16 @@ export const eligibility = {
       n: '01',
       title: 'Youth-led & Nigerian',
       detail: 'Founded or substantially led by a young Nigerian, with its main cultural tourism impact in Nigeria.',
-      image: 'eligibility-youth',
     },
     {
       n: '02',
       title: 'Active in the past two years',
       detail: 'Show the activities you have carried out during the past two years, beyond an idea or a proposed project.',
-      image: 'eligibility-active',
     },
     {
       n: '03',
       title: 'Evidence of impact',
       detail: 'Share social posts, videos, websites or other links that show your work, its consistency and who benefits.',
-      image: 'eligibility-impact',
     },
   ],
 }

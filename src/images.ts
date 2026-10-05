@@ -54,24 +54,6 @@ export const shots = {
     tone: 'gold',
     focus: '45% 45%',
   },
-  'eligibility-youth': {
-    alt: 'Young drummers and dancers in traditional red-and-white dress and coral beads',
-    brief: 'The people behind an initiative: a small youth-led team, candid.',
-    tone: 'forest',
-    focus: '55% 45%',
-  },
-  'eligibility-active': {
-    alt: 'A young man reads from his notes while people work together in a timber workshop',
-    brief: 'Activity in motion: a tour, a workshop, a market visit.',
-    tone: 'earth',
-    focus: '30% 45%',
-  },
-  'eligibility-impact': {
-    alt: 'Traders laugh with customers at a market stall of oranges, bananas and yams',
-    brief: 'Community benefit: local hosts, artisans or vendors with visitors.',
-    tone: 'gold',
-    focus: '45% 50%',
-  },
   'culture-heritage': {
     alt: 'Musicians in traditional dress play drums in front of carved wooden shutters',
     brief: 'Heritage tour: a historic site, palace, shrine or old quarter with a guide.',
