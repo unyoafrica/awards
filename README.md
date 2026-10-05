@@ -44,3 +44,21 @@ no decorative "tribal" graphics.
 - Check every `VERIFY` string in `src/content.ts` against the source site, including the FAQ wording.
 - Brand artwork comes from the únyọ Digital Brand Asset Kit (`src/assets/brand`, `public/brand`). Never retype or recolour the logo, and keep ú and ọ in visible brand text.
 - Confirm how the Comemakewego Tourism Africa Foundation should be credited in the footer.
+
+## Qart Ads prototype (`ads.html`)
+
+A separate, mobile-first prototype of the Qart Ads experience lives alongside the award site and shares nothing with it.
+Open `/ads.html` in the dev server, or the built `dist/ads.html`.
+
+| Path | What |
+| --- | --- |
+| `src/qart/app/` | App shell: hash router, floating tab bar (Home, Orders, Products, Ads, More). |
+| `src/qart/ui/` | Shared primitives: icons, bottom sheet, toasts, chips, segmented control, skeletons. |
+| `src/qart/styles/` | Qart tokens (`#18A957` green, `#F5C542` yellow) and base styles. |
+| `src/qart/features/home/` | Home and More screens recreated from the Qart app, with the Ads entry points. |
+| `src/qart/features/advertising/` | The Ads feature module: `screens/`, `components/`, `hooks/`, `services/`, `types/`, `utils/`, `data/`. |
+
+Platform specifics (Meta, TikTok, Snapchat objectives, minimum budgets, creative checks, publishing) sit behind
+`services/platforms`; screens only deal in goals, channels and budgets. `services/adsService.ts`, `aiService.ts` and
+`store.ts` are mocked with realistic data and latency and are the seams to replace with the real Qart APIs.
+Demo data can be reset, or cleared to see the first-time empty state, from **More → Prototype data**.

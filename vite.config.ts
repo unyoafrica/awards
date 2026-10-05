@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         nominate: resolve(import.meta.dirname, 'nominate.html'),
+        ads: resolve(import.meta.dirname, 'ads.html'),
       },
     },
   },
