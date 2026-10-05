@@ -29,17 +29,9 @@ export const hero = {
   secondaryCta: 'Explore the award',
 }
 
-export const manifesto = {
-  lines: ['Rooted in heritage.', 'Built for the future.'],
-  statement:
-    'From community tours to indigenous food, crafts and heritage storytelling, young Nigerians are creating new ways to experience our culture.',
-  body: ['This award recognises that work and supports its next chapter.'],
-}
-
 export const prize = {
   heading: 'Good work deserves room to grow.',
-  intro:
-    'From community tours to indigenous food, crafts and heritage storytelling, young Nigerians are creating new ways to experience our culture. This award recognises that work and supports its next chapter.',
+  intro: 'One outstanding initiative. Recognition that helps the work continue.',
   items: [
     { title: 'Development support grant', detail: '₦100,000 to support the winning venture’s cultural tourism work.' },
     { title: 'Award plaque', detail: 'A lasting recognition of your contribution.' },
@@ -55,8 +47,6 @@ export const prize = {
 
 export const eligibility = {
   heading: 'Who qualifies',
-  intro:
-    'Open to youth-led Nigerian startups, companies, social enterprises and organised initiatives with real cultural tourism work to show.',
   items: [
     {
       n: '01',

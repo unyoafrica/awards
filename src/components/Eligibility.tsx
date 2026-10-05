@@ -14,9 +14,6 @@ export function Eligibility() {
                 <span>{eligibility.heading}</span>
               </span>
             </h2>
-            <p className="qualify__intro" data-reveal="fade">
-              {eligibility.intro}
-            </p>
           </div>
         </header>
 

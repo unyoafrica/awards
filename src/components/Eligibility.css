@@ -26,10 +26,6 @@
   line-height: 0.88;
 }
 
-.qualify__intro {
-  color: var(--ink-700);
-  max-width: 26ch;
-}
 
 .qualify__list {
   grid-column: 6 / 13;

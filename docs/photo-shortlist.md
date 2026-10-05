@@ -10,7 +10,6 @@ Freepik's free licence requires attribution ("Image by Freepik" or the author's 
 | --- | --- | --- | --- |
 | `hero-guide` | Nigerian woman dancing medium shot | 16130631 | In use. |
 | `hero-detail` | Sideways man squeezing cloth from natural pigment | 10877014 | *Pending.* The inset stays hidden until it lands. |
-| `manifesto` | Medium shot nigerian dancers outdoors | 16130626 | In use. |
 | `award-plaque` | Supplied by Únyọ: woman holding the Cultural Tourism Impact Award 2026 on stage | | In use. |
 | `eligibility-youth` | Medium shot nigerian dancers with drums | 16130622 | In use. |
 | `eligibility-active` | Medium shot community working together | 13658962 | In use. |

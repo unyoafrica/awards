@@ -48,12 +48,6 @@ export const shots = {
     tone: 'forest',
     focus: '50% 40%',
   },
-  'manifesto': {
-    alt: 'Dancers and drummers perform in front of a mud-walled compound',
-    brief: 'Wide, cinematic. A festival or procession, people carrying tradition through the street.',
-    tone: 'ink',
-    focus: '50% 40%',
-  },
   'award-plaque': {
     alt: 'A smiling woman in a green and gold headwrap holds the Africa-shaped Únyọ Cultural Tourism Impact Award 2026 on stage',
     brief: 'The award plaque held on stage, the Únyọ logo on screen behind.',

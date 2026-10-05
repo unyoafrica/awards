@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { usePageMotion } from './motion'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
-import { Manifesto } from './components/Manifesto'
 import { Award } from './components/Award'
 import { Eligibility } from './components/Eligibility'
 import { Culture } from './components/Culture'
@@ -24,7 +23,6 @@ export default function App() {
       <Nav />
       <main id="main" ref={root}>
         <Hero />
-        <Manifesto />
         <Award />
         <Eligibility />
         <Culture />

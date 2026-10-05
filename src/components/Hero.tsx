@@ -55,7 +55,10 @@ export function Hero() {
         <dl className="hero__facts" data-hero-fade>
           <div>
             <dt className="meta">Winner receives</dt>
-            <dd>{award.grant} grant</dd>
+            <dd>
+              {award.grant} development support grant
+              <span className="hero__facts-extra">+ Award plaque + Certificate of recognition</span>
+            </dd>
           </div>
           <div>
             <dt className="meta">Presented</dt>

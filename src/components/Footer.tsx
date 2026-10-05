@@ -1,6 +1,6 @@
 import { award, nav } from '../content'
 import { Arrow } from './Arrow'
-import masterLogo from '../assets/brand/unyo-master-stacked.png'
+import masterLogo from '../assets/brand/unyo-logo-stacked.webp'
 import './Footer.css'
 
 export function Footer({ page = 'home' }: { page?: 'home' | 'nominate' }) {
@@ -43,7 +43,7 @@ export function Footer({ page = 'home' }: { page?: 'home' | 'nominate' }) {
             src={masterLogo}
             alt={award.organiser}
             width="800"
-            height="800"
+            height="760"
             loading="lazy"
           />
           <div className="footer__base">
