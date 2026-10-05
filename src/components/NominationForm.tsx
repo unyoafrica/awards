@@ -90,7 +90,19 @@ export function NominationForm() {
   const [nominationType, setNominationType] = useState('My own initiative')
   const [counts, setCounts] = useState<Record<string, number>>({})
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const referenceRef = useRef(newReference())
+
+  /** Clears a field's error as soon as the person edits it. */
+  function clearFieldError(e: FormEvent<HTMLFormElement>) {
+    const name = e.target instanceof Element ? e.target.getAttribute('name') : null
+    if (!name || !errors[name]) return
+    setErrors((prev) => {
+      const next = { ...prev }
+      delete next[name]
+      return next
+    })
+  }
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -106,12 +118,39 @@ export function NominationForm() {
   }
 
   async function submit(form: HTMLFormElement) {
-    if (!form.reportValidity()) return
+    const showError = (message: string) => {
+      setStatus({ kind: 'error', message })
+      requestAnimationFrame(() => messageRef.current?.focus())
+    }
+
+    // Our own messages under each field, instead of a browser bubble on the first one only.
+    const invalid = [...form.elements].filter(
+      (el): el is HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement =>
+        (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) &&
+        Boolean(el.name) &&
+        !el.validity.valid,
+    )
+    if (invalid.length) {
+      setErrors(Object.fromEntries(invalid.map((el) => [el.name, fieldMessage(el)])))
+      setStatus({
+        kind: 'error',
+        message:
+          invalid.length === 1
+            ? 'One answer needs attention before you can submit. It is marked above.'
+            : `${invalid.length} answers need attention before you can submit. They are marked above.`,
+      })
+      invalid[0].scrollIntoView({ block: 'center', behavior: 'smooth' })
+      invalid[0].focus({ preventScroll: true })
+      return
+    }
+    setErrors({})
 
     const data = new FormData(form)
-    if (data.get('companyWebsite')) return // honeypot
+    // Spam trap: bots fill every field. A filled trap is flagged, never dropped,
+    // so a person whose browser autofilled it still gets their nomination through.
+    const flagged = Boolean(data.get('nom_hp'))
 
-    const values: Record<string, string> = { submissionId: referenceRef.current }
+    const values: Record<string, string> = { submissionId: referenceRef.current + (flagged ? '-CHECK' : '') }
     for (const key of submissionKeys) {
       if (key === 'submissionId') continue
       const el = form.elements.namedItem(key)
@@ -119,11 +158,7 @@ export function NominationForm() {
       else values[key] = String(data.get(key) ?? '').trim()
     }
     if (values.nominationType !== 'Another initiative') values.relationship = ''
-
-    const showError = (message: string) => {
-      setStatus({ kind: 'error', message })
-      requestAnimationFrame(() => messageRef.current?.focus())
-    }
+    for (const key of ['socialLink', 'website']) values[key] = withScheme(values[key])
 
     if (!googleForm.formId) {
       showError('Online submissions are not connected yet, so this nomination was not sent. Your answers are still here.')
@@ -291,7 +326,15 @@ export function NominationForm() {
             <p>{page.formIntro}</p>
           </div>
 
-          <form ref={formRef} id="nomination-form" className="nom__form" onSubmit={onSubmit}>
+          <form
+            ref={formRef}
+            id="nomination-form"
+            className="nom__form"
+            noValidate
+            onSubmit={onSubmit}
+            onInput={clearFieldError}
+            onChange={clearFieldError}
+          >
             {sections.map((section) => (
               <fieldset key={section.id} id={section.id} className="nom__section">
                 <legend>
@@ -307,6 +350,7 @@ export function NominationForm() {
                         key={field.name}
                         field={field}
                         count={counts[field.name] ?? 0}
+                        error={errors[field.name]}
                         onCount={(n) => setCounts((c) => ({ ...c, [field.name]: n }))}
                         onChange={field.name === 'nominationType' ? setNominationType : undefined}
                       />
@@ -319,8 +363,8 @@ export function NominationForm() {
                 {section.id === 'declaration' && (
                   <>
                     <div className="nom__trap" aria-hidden="true">
-                      <label htmlFor="companyWebsite">Leave this empty</label>
-                      <input id="companyWebsite" name="companyWebsite" tabIndex={-1} autoComplete="off" />
+                      <label htmlFor="nom_hp">Leave this empty</label>
+                      <input id="nom_hp" name="nom_hp" tabIndex={-1} autoComplete="off" data-1p-ignore data-lpignore="true" />
                     </div>
                     <div className="nom__submit">
                       <button className="btn btn--gold" type="submit" disabled={status.kind === 'sending'} onClick={onSubmitClick}>
@@ -345,64 +389,95 @@ export function NominationForm() {
   )
 }
 
+/** Adds https:// to a link typed without it, e.g. "instagram.com/page". */
+function withScheme(value: string) {
+  if (!value) return value
+  return /^[a-z][a-z0-9+.-]*:\/\//i.test(value) ? value : `https://${value}`
+}
+
+/** A plain-language message for a field that fails validation. */
+function fieldMessage(el: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) {
+  const v = el.validity
+  if (el instanceof HTMLInputElement && el.type === 'checkbox') return 'Please tick this box to continue.'
+  if (v.valueMissing) return el instanceof HTMLSelectElement ? 'Please choose an option.' : 'Please fill in this field.'
+  if (v.typeMismatch && el.type === 'email') return 'Enter an email address, for example name@example.com.'
+  if (v.patternMismatch && el.inputMode === 'url') return 'Enter a link, for example instagram.com/yourpage.'
+  if (v.rangeUnderflow || v.rangeOverflow || v.badInput || v.stepMismatch) {
+    if (el.type === 'date') return 'Choose a date that is not in the future.'
+    return `Enter a whole number between ${el.getAttribute('min')} and ${el.getAttribute('max')}.`
+  }
+  if (v.tooLong) return 'This answer is too long.'
+  return el.validationMessage || 'Please check this answer.'
+}
+
 function FieldControl({
   field,
   count,
+  error,
   onCount,
   onChange,
 }: {
   field: Field
   count: number
+  error?: string
   onCount: (n: number) => void
   onChange?: (value: string) => void
 }) {
   const id = field.name
   const hintId = useId()
+  const errorId = useId()
   const label = (
     <>
       {field.label}
       {field.required ? <span aria-hidden="true"> *</span> : <span className="nom__optional"> (optional)</span>}
     </>
   )
+  const errorText = error && (
+    <p className="nom__error" id={errorId}>
+      {error}
+    </p>
+  )
 
   if (field.kind === 'checkbox') {
     return (
-      <label className="nom__check" htmlFor={id}>
-        <input id={id} name={id} type="checkbox" required={field.required} />
-        <span>
-          {field.label}
-          {field.required && <span aria-hidden="true"> *</span>}
-        </span>
-      </label>
+      <div className={`nom__check-wrap ${error ? 'has-error' : ''}`}>
+        <label className="nom__check" htmlFor={id}>
+          <input
+            id={id}
+            name={id}
+            type="checkbox"
+            required={field.required}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? errorId : undefined}
+          />
+          <span>
+            {field.label}
+            {field.required && <span aria-hidden="true"> *</span>}
+          </span>
+        </label>
+        {errorText}
+      </div>
     )
   }
 
   const hint = 'hint' in field ? field.hint : undefined
   const half = 'half' in field && field.half
+  const describedBy = [hint || field.kind === 'textarea' ? hintId : '', error ? errorId : ''].filter(Boolean).join(' ') || undefined
+  const common = { id, name: id, required: field.required, 'aria-invalid': error ? true : undefined, 'aria-describedby': describedBy }
 
   return (
-    <div className={`nom__field ${half ? 'nom__field--half' : ''}`}>
+    <div className={`nom__field ${half ? 'nom__field--half' : ''} ${error ? 'has-error' : ''}`}>
       <label htmlFor={id}>{label}</label>
       {field.kind === 'textarea' ? (
         <textarea
-          id={id}
-          name={id}
+          {...common}
           rows={field.rows}
           maxLength={field.maxLength}
-          required={field.required}
           placeholder={field.placeholder}
-          aria-describedby={hintId}
           onInput={(e) => onCount(e.currentTarget.value.length)}
         />
       ) : field.kind === 'select' ? (
-        <select
-          id={id}
-          name={id}
-          required={field.required}
-          defaultValue={field.placeholder ? '' : field.options[0].value}
-          aria-describedby={hint ? hintId : undefined}
-          onChange={(e) => onChange?.(e.target.value)}
-        >
+        <select {...common} defaultValue={field.placeholder ? '' : field.options[0].value} onChange={(e) => onChange?.(e.target.value)}>
           {field.placeholder && <option value="">{field.placeholder}</option>}
           {field.options.map((o) => (
             <option key={o.value} value={o.value}>
@@ -411,19 +486,30 @@ function FieldControl({
           ))}
         </select>
       ) : field.kind === 'number' ? (
-        <input id={id} name={id} type="number" inputMode="numeric" min={field.min} max={field.max} step={1} required={field.required} />
+        <input {...common} type="number" inputMode="numeric" min={field.min} max={field.max} step={1} />
+      ) : field.kind === 'url' ? (
+        // Plain text so links typed without https:// are accepted; it is added on submit.
+        <input
+          {...common}
+          type="text"
+          inputMode="url"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          pattern="\S+\.\S+"
+          maxLength={field.maxLength}
+          placeholder={field.placeholder}
+          autoComplete={field.autoComplete ?? 'url'}
+        />
       ) : (
         <input
-          id={id}
-          name={id}
+          {...common}
           type={field.kind}
           max={field.kind === 'date' ? today : undefined}
           onClick={field.kind === 'date' ? (e) => e.currentTarget.showPicker?.() : undefined}
           maxLength={field.maxLength}
-          required={field.required}
           placeholder={field.placeholder}
           autoComplete={field.autoComplete}
-          aria-describedby={hint ? hintId : undefined}
         />
       )}
       {(hint || field.kind === 'textarea') && (
@@ -436,6 +522,7 @@ function FieldControl({
           )}
         </p>
       )}
+      {errorText}
     </div>
   )
 }

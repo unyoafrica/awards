@@ -125,10 +125,10 @@ export const sections: Section[] = [
         label: 'Main social media profile link',
         required: true,
         maxLength: 1000,
-        placeholder: 'https://',
+        placeholder: 'instagram.com/yourpage',
         hint: 'This is evidence of activity, not a follower-count requirement.',
       },
-      { kind: 'url', name: 'website', label: 'Website link', maxLength: 1000, placeholder: 'https://' },
+      { kind: 'url', name: 'website', label: 'Website link', maxLength: 1000, placeholder: 'yourwebsite.com' },
       { kind: 'select', name: 'category', label: 'Main area of cultural tourism work', options: opt(categoryOptions), placeholder: 'Select the closest fit' },
       {
         kind: 'checkbox',

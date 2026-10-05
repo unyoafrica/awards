@@ -286,6 +286,11 @@
   font-variant-numeric: tabular-nums;
 }
 
+.nom__check-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+}
+
 .nom__check {
   grid-column: 1 / -1;
   display: grid;
@@ -303,6 +308,35 @@
   height: 1.3rem;
   margin: 0.15rem 0 0;
   accent-color: var(--forest-900);
+}
+
+.nom__check-wrap.has-error .nom__check {
+  outline: 2px solid #a8321e;
+  outline-offset: -2px;
+  background: color-mix(in oklab, #a8321e 6%, var(--cotton-100));
+}
+
+/* Field errors: plain-language message under the field, field outlined. */
+.nom__field.has-error input,
+.nom__field.has-error select,
+.nom__field.has-error textarea {
+  border-color: #a8321e;
+  box-shadow: 0 0 0 1px #a8321e;
+}
+
+.nom__error {
+  margin-top: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: #8f2a18;
+}
+
+.nom__field input,
+.nom__field select,
+.nom__field textarea,
+.nom__check-wrap {
+  scroll-margin-block: 7rem;
 }
 
 .nom__section-note {
